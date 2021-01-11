@@ -1,0 +1,137 @@
+@charset "utf-8";
+
+// ===================================================================
+// 変数
+// ===================================================================
+$color: #000;
+$link: #0033cc;
+$green: #00512d;
+
+$display_width: 960px;
+$breakpointLAP: 1366px;
+$breakpointTAB: 960px;
+$breakpointSP: 560px;
+
+$sans : "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
+$serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;
+// $sans: "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+// $serif: YakuHanMP, "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;;
+
+$container-width : 1200px;
+
+
+// ===================================================================
+// container
+// ===================================================================
+@mixin visible {
+	display: inline;
+	&.block { display: block; }
+	//&.inline-block { display: inline-block; }
+}
+@mixin hide {
+	display: none;
+	&.block { display: none; }
+	//&.inline-block { display: none; }
+}
+@mixin clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+@mixin container{
+	position: relative;
+	margin-left: auto; margin-right: auto;
+	width: 100%;
+	max-width: $container-width;
+	@include lap{
+		max-width:initial;
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	@include tab{
+		max-width:initial;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	@include sp{
+		max-width:initial;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+
+// ===================================================================
+// mixin responsive
+// sp--[1]--tab--[2]--lap--[3]--dsk
+//                      pc        pc
+// ===================================================================
+
+@mixin sp {
+	@media screen and (max-width: ($breakpointSP) ){@content;}
+}
+@mixin sp-tab {
+	@media screen and (max-width: ($breakpointTAB) ){@content;}
+}
+@mixin sp-lap {
+	@media screen and (max-width: ($breakpointLAP) ){@content;}
+}
+
+@mixin tab{
+	@media screen and (min-width: ($breakpointSP + 1) ) and (max-width: ($breakpointTAB ) ){@content;}
+}
+@mixin tab-lap{
+	@media screen and (min-width: ($breakpointSP + 1) ) and (max-width: ($breakpointLAP ) ){@content;}
+}
+@mixin tab-dsk{
+	// PCと同じ
+	@media screen and (min-width: ($breakpointSP + 1) ){@content;}
+}
+
+@mixin lap{
+	@media screen and (min-width: ($breakpointTAB + 1) ) and (max-width: ($breakpointLAP ) ){@content;}
+}
+
+@mixin dsk {
+	@media screen and (min-width: ($breakpointLAP + 1) ){@content;}
+}
+
+@mixin pc {
+	@media screen and (min-width: ($breakpointTAB + 1) ){@content;}
+}
+@mixin pc-tab {
+	@media screen and (min-width: ($breakpointSP + 1) ){@content;}
+}
+
+
+// ===================================================================
+// mixin utility
+// ===================================================================
+@mixin visible {
+	display: inline;
+	&.block { display: block; }
+	//&.inline-block { display: inline-block; }
+}
+@mixin hide {
+	display: none;
+	&.block { display: none; }
+	//&.inline-block { display: none; }
+}
+@mixin clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+

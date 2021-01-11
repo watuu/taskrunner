@@ -1,0 +1,44 @@
+
+/*----------------------------------------------------
+	ヘッダー
+----------------------------------------------------*/
+header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+	transform: translateY(0);
+	@include pc {
+		.scrollDown & {
+			animation: headerScrollDown .3s ease-out forwards;
+		}
+		.scrollUp & {
+			animation: headerScrollUp .3s ease-out forwards;
+		}
+	}
+}
+@keyframes headerScrollDown {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100%);
+	}
+}
+@keyframes headerScrollUp {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+@include pc {
+}
+@include sp-tab {
+}
+@media (hover: hover) {
+}
+
+

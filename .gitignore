@@ -1,0 +1,14 @@
+.idea
+node_modules
+package-lock.json
+*::*
+*__*
+
+# WPの場合テーマのみGIT追加
+# /dest/*
+# !/dest/.gitignore
+# !/dest/wp-content
+# /dest/wp-content/*
+# !/dest/wp-content/themes
+# /dest/wp-content/themes/*
+# !/dest/wp-content/themes/xxx

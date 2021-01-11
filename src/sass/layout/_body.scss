@@ -1,0 +1,19 @@
+
+/*----------------------------------------------------
+	body
+----------------------------------------------------*/
+body {
+	@include pc {
+	}
+	@include sp-tab {
+	}
+}
+body.no-scroll {
+	//overflow: hidden;
+	//height: 100vh;
+}
+@media all and (-ms-high-contrast: none) {
+	//body {
+	//	font-family: "メイリオ", Meiryo, "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	//}
+}

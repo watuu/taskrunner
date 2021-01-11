@@ -1,0 +1,26 @@
+
+/*----------------------------------------------------
+	フォント
+----------------------------------------------------*/
+html {
+	font-size: 16px;
+	@include sp {
+		// font-size: (32/640*100vw);
+	}
+}
+body {
+	font-family: $sans;
+	line-height: 1.5;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	word-wrap:break-word;
+	color: $color;
+}
+.serif {
+	font-family: $serif;
+}
+
+
+
+
+

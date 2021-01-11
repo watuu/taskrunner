@@ -1,0 +1,21 @@
+
+/*----------------------------------------------------
+	フォーム
+----------------------------------------------------*/
+input[type=submit] {
+	-webkit-appearance: none;
+}
+button {
+	-webkit-appearance: none;
+}
+button, input, select, textarea {
+	font-family : inherit;
+	font-size : 100%;
+}
+@include pc {
+}
+@include sp-tab {
+}
+@media (hover: hover) {
+}
+
