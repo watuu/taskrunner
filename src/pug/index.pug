@@ -5,12 +5,35 @@ block vars
 
 block content
     header
-
+        .header-logo
+            p
+                a(href="#items") logo
+        .header-menu
+            div
+                span
+                span
+                span
     main
-        p master3
-        p xxx
-
+        .top-mv
+            p logo
+        #slide01
+            .slide.slide-w1280
+                img(src='http://placehold.jp/666666/ffffff/1280x600.png' alt='')
+            .slide.slide-w1280
+                img(src='http://placehold.jp/000000/ffffff/1280x600.png' alt='')
+            .slide.slide-w1280
+                img(src='http://placehold.jp/333333/ffffff/1280x600.png' alt='')
         .container
+            .widget-items#items
+            - for (var x = 1; x <= 4; x++)
+                .widget-item
+                    .widget-item__head
+                        h2 title
+                    .widget-item__body
+                        ._pic
+                            img(src="https://placehold.jp/600x320.png")
+                        ._text
+                            p この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ
 
     footer
 

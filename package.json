@@ -26,6 +26,7 @@
     "autoprefixer": "^10.2.1",
     "babel-loader": "^8.2.2",
     "chokidar-cli": "^2.1.0",
+    "css-loader": "^5.0.1",
     "csscomb": "^4.3.0",
     "node-sass": "^4.14.1",
     "node-sass-globbing": "0.0.23",
@@ -42,8 +43,6 @@
     "gsap": "^3.5.1",
     "jquery": "^3.5.1",
     "jquery-jpostal-ja": "^2.14.4",
-    "jquery.easing": "^1.4.1",
-    "jquery.smoothscroll": "^3.0.1",
     "object-fit-images": "^3.2.4",
     "slick-carousel": "^1.8.1"
   }

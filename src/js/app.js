@@ -1,19 +1,14 @@
 
-import common from './common';
+import {default as Common} from './common';
+import Top from './top';
+import Slider from './slider';
+import Gsap from './gsap';
 
-// import slider from './slider';
-import top from './top';
-
-// var グローバルスコープ
-// let ブロックスコープ
-
-common();
-
-$(window).on('load', function() {
-    // slider();
-    top();
-});
-
+let common = new Common();
+common.load();
+new Top();
+new Slider();
+new Gsap();
 
 
 

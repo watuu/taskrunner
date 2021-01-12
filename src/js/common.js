@@ -1,29 +1,48 @@
-import 'jquery.easing/jquery.easing.js';
-import 'jquery.smoothscroll/dist/jquery.smoothscroll.min.js';
-export default function common() {
-    let device = setDevice();
-    $(function(){
-        // if (device != 'Mobile') {
-        //     $("meta[name='viewport']").attr('content', 'width=1000');
-        // }
-        /*
-         * SmoothScroll
-         */
-        if (location.hash) {
-            // var scrollPosition = 0;
-            // scrollPosition = $(location.hash).offset().top - offset;
-            // $("html,body").animate({ scrollTop: scrollPosition});
-        }
-        $( 'a[href*="#"]' ).SmoothScroll( {
-            duration: 1000,
-            // offset: offset,
-            hash: false,
-            easing: 'easeOutQuint'
-        });
-        /*
-         * スクロールイベント
-         */
-        var defPos = 0;
+import objectFitImages from 'object-fit-images';
+export default class common {
+
+    constructor() {
+        this.global = 'global';
+        console.log('common.init');
+    }
+
+    isSP() {
+        return window.matchMedia('screen and (min-width: 375px) and (max-width: 560px)').matches
+    }
+    isTAB() {
+        return window.matchMedia('screen and (min-width: 561px) and (max-width: 960px)').matches
+    }
+    isPC() {
+        return window.matchMedia('screen and (min-width: 961px)').matches
+    }
+
+    load() {
+        this.loader();
+        this.scrollEvent();
+        this.setDeviceClassToBody();
+        this.smoothScroll();
+        this.globalMenu();
+        objectFitImages();
+    }
+
+    /*
+     * loader()
+     * ローディング処理
+     */
+    loader() {
+        (function(){
+            setTimeout(function(){
+                $('body').addClass('loadedLower');
+            },500);
+        })();
+    }
+
+    /*
+     * scrollEvent
+     * スクロール動作
+     */
+    scrollEvent() {
+        let defPos = 0;
         $(window).scroll(function() {
             debounce(addBodyScrollClass, 10);
         });
@@ -46,18 +65,14 @@ export default function common() {
                 method();
             }, delay);
         }
-        /*
-        * BODY LOADER
-        */
-        (function(){
-            setTimeout(function(){
-                $('body').addClass('loadedLower');
-            },500);
-        })();
+    }
 
-        /*
-         * PCナビ
-         */
+    /*
+     * globalMenu
+     * グローバルメニューの動作
+     */
+    globalMenu() {
+        // PCナビ
         $(window).on('scroll resize orientationchange', function(){
             var margin = 300;
             if ($(this).scrollTop() > margin) {
@@ -69,9 +84,7 @@ export default function common() {
             }
         });
 
-        /*
-         * スマホメニュー
-         */
+        // スマホメニュー
         $('.header-menu').on('click', function() {
             setNavHeight();
             $('.header-menu').toggleClass('open');
@@ -91,37 +104,68 @@ export default function common() {
         function setNavHeight() {
             $('.header-nav').css('height', (window.innerHeight - $('header').height()) + 'px');
         }
-    });
-    $(window).on('load', function() {
-        /*
-         * リサイズ設定
-         */
-        // setModalHeight();
-        $(window).on('resize orientationchange', function(){
-            let device = setDevice();
-            // setModalHeight();
-        });
-
-        /*
-         * fadeIn
-         */
-        $('.fadeIn').addClass('show');
-
-    });
-
-    function setDevice() {
-        // if ($(window).width() < 768){
-        let ua = navigator.userAgent;
-        if ((ua.indexOf('iPhone') > 0) || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0)) {
-            device = 'Mobile';
-        } else {
-            device = 'Desktop';
+        function setModalHeight() {
+            $('.aside-nav').css('height', (window.innerHeight - $('header').height()) + 'px');
         }
-        return device;
     }
 
-    function setModalHeight() {
-        $('.aside-nav').css('height', (window.innerHeight - $('header').height()) + 'px');
+    /*
+     * smoothScroll
+     * アンカーリンクのスムーススクロール
+     */
+    smoothScroll() {
+
+        $('a[href^="#"]').not('.noscroll').click(function () {
+            let href = $(this).attr('href');
+            let target = $(href == '#' || href == '' ? 'html' : href);
+            let targetPos = target.offset().top; // 移動する位置
+            let scrollTop = $(window).scrollTop(); // 現在のスクロール位置
+            let scroll = scrollTop - targetPos; // 移動量
+            let duration = 300;
+
+            // 移動量がマイナスの場合
+            if (scroll < 0) {
+                scroll = scroll * (-1);
+            }
+            duration = 0.7 * scroll; // 1pxを0.7ミリ秒（0.0007秒）で移動した場合の時間
+
+            // 時間が100ミリ秒以上は300ミリ秒に設定
+            if (duration > 300) {
+                duration = 300;
+            }
+
+            $('html, body').animate({
+                scrollTop: targetPos
+            }, duration, 'swing');
+            return false;
+        });
+
+    }
+
+    /*
+     * setDeviceClassToBody
+     * デバイスサイズによるクラス付
+     */
+    setDeviceClassToBody() {
+        $(window).on('load resize orientationchange', () => {
+
+            if (this.isSP()) {
+                $('body').addClass('isSP');
+            } else {
+                $('body').removeClass('isSP');
+            }
+            if (this.isTAB()) {
+                $('body').addClass('isTAB');
+            } else {
+                $('body').removeClass('isTAB');
+            }
+            if (this.isPC()) {
+                $('body').addClass('isPC');
+            } else {
+                $('body').removeClass('isPC');
+            }
+
+        });
     }
 }
 

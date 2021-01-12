@@ -46,3 +46,13 @@ a.link-text {
 		-webkit-tap-highlight-color: transparent;
 	}
 }
+:target:before {
+	content: '';
+	display: block;
+	position: relative;
+	pointer-events: none;
+	top: (-$scroll-margin-top);
+	@include sp {
+		top: (-$scroll-margin-top-SP);
+	}
+}

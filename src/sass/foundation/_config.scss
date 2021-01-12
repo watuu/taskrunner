@@ -7,18 +7,22 @@ $color: #000;
 $link: #0033cc;
 $green: #00512d;
 
-$display_width: 960px;
-$breakpointLAP: 1366px;
-$breakpointTAB: 960px;
-$breakpointSP: 560px;
-
 $sans : "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
 $serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;
 // $sans: "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 // $serif: YakuHanMP, "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;;
 
+
+$breakpointSP: 560px;
+$breakpointTAB: 960px;
+$breakpointLAP: 1366px;
+
+// コンテンツの最大幅
 $container-width : 1200px;
 
+// アンカーのマージン
+$scroll-margin-top: 60px;
+$scroll-margin-top-SP: 60px;
 
 // ===================================================================
 // container
