@@ -47,15 +47,15 @@ export default class common {
             debounce(addBodyScrollClass, 10);
         });
         function addBodyScrollClass() {
-            var currentPos = $(window).scrollTop();
+            let currentPos = $(window).scrollTop();
             if (currentPos > defPos) {
                 if($(window).scrollTop() >= 200) {
-                    $("body").addClass("scrollDown");
-                    $("body").removeClass("scrollUp");
+                    $('body').addClass('scrollDown');
+                    $('body').removeClass('scrollUp');
                 }
             } else {
-                $("body").removeClass("scrollDown");
-                $("body").addClass("scrollUp");
+                $('body').removeClass('scrollDown');
+                $('body').addClass('scrollUp');
             }
             defPos = currentPos;
         }
@@ -74,7 +74,7 @@ export default class common {
     globalMenu() {
         // PCナビ
         $(window).on('scroll resize orientationchange', function(){
-            var margin = 300;
+            let margin = 300;
             if ($(this).scrollTop() > margin) {
                 $('body').addClass('scrolled');
                 $('.header-nav').addClass('scroll');
