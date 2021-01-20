@@ -13,9 +13,9 @@
   },
   "scripts": {
     "css": "node-sass src/sass -o ${npm_package_config_path_dest}/assets/css --importer node_modules/node-sass-globbing/index.js --output-style expanded && postcss ${npm_package_config_path_dest}/assets/css/*.css -o ${npm_package_config_path_dest}/assets/css/*.css --no-map --use autoprefixer && csscomb ${npm_package_config_path_dest}/assets/css/*.css",
-    "css-watch": "chokidar src/sass/**/*.scss -c 'npm run css'",
-    "pug": "pug src/pug/ --hierarchy -o ${npm_package_config_path_dest} -P -E ${npm_package_config_pug_ext}",
-    "pug-watch": "pug src/pug/ --hierarchy -o ${npm_package_config_path_dest} -w -P -E ${npm_package_config_pug_ext}",
+    "css-watch": "chokidar src/sass/ -c 'npm run css'",
+    "pug": "pug src/pug/ --hierarchy -o ${npm_package_config_path_dest} -P '\t' -E ${npm_package_config_pug_ext}",
+    "pug-watch": "pug src/pug/ --hierarchy -o ${npm_package_config_path_dest} -w -P '\t'  -E ${npm_package_config_pug_ext}",
     "webpack": "webpack",
     "webpack-watch": "webpack --watch",
     "watch": "npm run css-watch & npm run pug-watch & npm run webpack-watch"
@@ -34,7 +34,7 @@
     "postcss": "^8.2.4",
     "postcss-cli": "^8.3.1",
     "pug": "^3.0.0",
-    "pug-cli": "github:pugjs/pug-cli#master",
+    "pug-cli": "git+https://github.com/watuu/pug-cli.git",
     "style-loader": "^2.0.0",
     "webpack": "^4.45.0",
     "webpack-cli": "^4.3.1"

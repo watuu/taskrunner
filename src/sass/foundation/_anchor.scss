@@ -39,6 +39,9 @@ a.link-text {
 	}
 }
 @media (hover: hover) {
+	a[href^='tel:'] {
+		pointer-events: none;
+	}
 }
 @media (hover: none) {
 	a, button {

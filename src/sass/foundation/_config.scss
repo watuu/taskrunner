@@ -4,7 +4,7 @@
 // 変数
 // ===================================================================
 $color: #000;
-$link: #0033cc;
+$link: #1DA1F2;
 $green: #00512d;
 
 $sans : "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
@@ -19,6 +19,7 @@ $breakpointLAP: 1366px;
 
 // コンテンツの最大幅
 $container-width : 1200px;
+$container-width-L : 1340px;
 
 // アンカーのマージン
 $scroll-margin-top: 60px;
@@ -52,11 +53,11 @@ $scroll-margin-top-SP: 60px;
 	position: relative;
 	margin-left: auto; margin-right: auto;
 	width: 100%;
-	max-width: $container-width;
+	padding-left: 40px;
+	padding-right: 40px;
+	max-width: ($container-width + 80px);
 	@include lap{
 		max-width:initial;
-		padding-left: 40px;
-		padding-right: 40px;
 	}
 	@include tab{
 		max-width:initial;

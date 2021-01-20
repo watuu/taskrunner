@@ -5,5 +5,8 @@
 .container {
 	@include container;
 }
+.container--l {
+	max-width: ($container-width-L + 80px);
+}
 
 

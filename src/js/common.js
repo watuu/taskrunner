@@ -92,14 +92,20 @@ export default class common {
                 $('.header-nav').addClass('open');
                 $('body').addClass('no-scroll');
             } else {
-                $('.header-nav').removeClass('open');
+                $('.header-nav').removeClass('open').addClass('closing');
                 $('body').removeClass('no-scroll');
+                setTimeout(function(){
+                    $('.header-nav').removeClass('closing');
+                },2000);
             }
         });
         $('.header-nav a').on('click', function() {
             $('.header-menu').removeClass('open');
-            $('.header-nav').removeClass('open');
+            $('.header-nav').removeClass('open').addClass('closing');
             $('body').removeClass('no-scroll');
+            setTimeout(function(){
+                $('.header-nav').removeClass('closing');
+            },2000);
         });
         function setNavHeight() {
             $('.header-nav').css('height', (window.innerHeight - $('header').height()) + 'px');
