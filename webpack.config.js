@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-    mode: 'development',
+    mode: process.env.WEBPACK_ENV,
     // mode: 'production',
     entry: `./src/js/app.js`,
     output: {
