@@ -18,6 +18,10 @@ header {
 		}
 	}
 }
+.header-logo {
+	height: 60px;
+	background-color: #fff;
+}
 @keyframes headerScrollDown {
 	0% {
 		transform: translateY(0);
@@ -41,12 +45,5 @@ header {
 @media (hover: hover) {
 }
 
-.header-logo {
-	height: 60px;
-	color: #fff;
-	background-color: #000;
-	a {
-		color: #fff;
-	}
-}
+
 

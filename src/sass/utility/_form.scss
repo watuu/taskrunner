@@ -2,8 +2,11 @@
 /*----------------------------------------------------
 	フォーム
 ----------------------------------------------------*/
+// パーツ系
 input[type=submit] {
 	-webkit-appearance: none;
+	outline: none;
+	border: none;
 	&:focus {
 		// border: 1px solid $blue;
 	}
@@ -13,10 +16,30 @@ input[type=submit] {
 }
 button {
 	-webkit-appearance: none;
+	outline: none;
+	border: none;
 }
 button, input, select, textarea {
 	font-family : inherit;
 	font-size : 100%;
+}
+input[type="text"],
+input[type="email"] {
+
+}
+select {
+
+}
+textarea {
+
+}
+input[type="radio"],
+input[type="checkbox"] {
+	position: relative;
+	top: -0.125em;
+	margin-right: 0.25em;
+	width: 0.875em;
+	height: 0.875em;
 }
 @include pc {
 }

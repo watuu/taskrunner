@@ -10,23 +10,52 @@ export default class Gsap {
     constructor() {
         let common = new Common();
         console.log('gsap.init');
-
         gsap.registerPlugin(ScrollTrigger);
-        gsap.from('.widget-item', {
-            scrollTrigger: {
-                trigger: '.widget-items',
-                // start: 'top -100px',
-                // end: 'top -100px',
-                markers: true,
-            },
-            y: 300,
-            duration: 1.0,
-            ease: 'power2',
+
+        $('[data-trigger]').each(function(){
+            ScrollTrigger.create({
+                trigger: this,
+                toggleClass: 'visible',
+                once: true,
+            })
         });
-        // let tl = gsap.timeline({repeat: 2, repeatDelay: 1});
-        // tl.to('#id', {x: 100, duration: 1});
-        // tl.to('#id', {y: 50, duration: 1});
-        // tl.to('#id', {opacity: 0, duration: 1});
+
+        if ($('body').hasClass('home')) {
+            $(window).on('load', () => {
+                this.top();
+            })
+        }
+
+    }
+
+    top() {
+        // トップ MV イントロ
+        let tl = gsap.timeline();
+        tl.to('.top-mv__bg',{
+            scrollTrigger: {
+                trigger: '.top-mv__bg',
+                scrub: true,
+                // markers: true,
+            },
+            delay: 0,
+            duration: 0,
+            className:"+=top-mv__bg animated",
+        })
+        .set('.top-mv__body ._ico', {
+            delay: 1.5,
+            duration: 0,
+            className:"+=_ico animated",
+        });
+
+        // トップ MV パララックス
+        gsap.from('.top-mv__body', {
+            scrollTrigger: {
+                trigger: '.top-mv__body',
+                scrub: true
+            },
+            y: -100,
+            ease: "none",
+        });
     }
 }
 

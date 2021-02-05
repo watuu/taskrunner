@@ -22,9 +22,9 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   outline: 0;
+  background: transparent;
   font-size: 100%;
   vertical-align: baseline;
-  background: transparent;
 }
 
 body {
@@ -53,9 +53,9 @@ q:before, q:after {
 a {
   margin: 0;
   padding: 0;
+  background: transparent;
   font-size: 100%;
   vertical-align: baseline;
-  background: transparent;
 }
 
 /* change colours to suit your needs */
@@ -91,10 +91,10 @@ table {
 hr {
   display: block;
   height: 1px;
-  border: 0;
-  border-top: 1px solid #cccccc;
   margin: 1em 0;
   padding: 0;
+  border: 0;
+  border-top: 1px solid #cccccc;
 }
 
 input, select {
@@ -118,7 +118,7 @@ li {
 }
 
 h1, h2, h3, h4, h5, h6, th, dt {
-  font-weight: normal;
+  font-weight: inherit;
 }
 
 article, main, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, picture {
@@ -172,12 +172,12 @@ html {
 }
 
 body {
-  font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
-  line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   word-wrap: break-word;
   color: #000;
+  line-height: 1.5;
+  font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
 }
 
 .serif {
@@ -198,7 +198,9 @@ a .alpha {
 }
 
 a img {
+  transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, -webkit-transform .3s ease-out;
   transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, transform .3s ease-out;
+  transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, transform .3s ease-out, -webkit-transform .3s ease-out;
 }
 
 @media (hover: hover) {
@@ -208,7 +210,7 @@ a img {
 }
 
 .link-text a {
-  color: #0033cc;
+  color: #1DA1F2;
 }
 
 @media (hover: hover) {
@@ -218,12 +220,18 @@ a img {
 }
 
 a.link-text {
-  color: #0033cc;
+  color: #1DA1F2;
 }
 
 @media (hover: hover) {
   a.link-text:hover {
     text-decoration: underline;
+  }
+}
+
+@media (hover: hover) {
+  a[href^='tel:'] {
+    pointer-events: none;
   }
 }
 
@@ -235,11 +243,11 @@ a.link-text {
 }
 
 :target:before {
-  content: '';
   display: block;
   position: relative;
-  pointer-events: none;
   top: -60px;
+  content: '';
+  pointer-events: none;
 }
 
 @media screen and (max-width: 560px) {
@@ -253,34 +261,38 @@ a.link-text {
 ----------------------------------------------------*/
 .container {
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 @media screen and (min-width: 961px) and (max-width: 1366px) {
   .container {
     max-width: initial;
-    padding-left: 40px;
-    padding-right: 40px;
   }
 }
 
 @media screen and (min-width: 561px) and (max-width: 960px) {
   .container {
     max-width: initial;
-    padding-left: 20px;
     padding-right: 20px;
+    padding-left: 20px;
   }
 }
 
 @media screen and (max-width: 560px) {
   .container {
     max-width: initial;
-    padding-left: 20px;
     padding-right: 20px;
+    padding-left: 20px;
   }
+}
+
+.container--l {
+  max-width: 1420px;
 }
 
 /*----------------------------------------------------
@@ -291,10 +303,10 @@ a.link-text {
 ----------------------------------------------------*/
 @media screen and (max-width: 960px) {
   .header-menu {
-    position: absolute;
-    right: 0;
-    top: 0px;
     z-index: 2;
+    position: absolute;
+    top: 0px;
+    right: 0;
     width: 60px;
     height: 60px;
     cursor: pointer;
@@ -305,10 +317,10 @@ a.link-text {
   .header-menu span {
     display: block;
     position: absolute;
-    height: 3px;
-    width: 24px;
-    background: #005bac;
     left: 18px;
+    width: 24px;
+    height: 3px;
+    background: #005bac;
     transition: .35s ease-in-out;
   }
   .header-menu span:nth-child(1) {
@@ -321,16 +333,18 @@ a.link-text {
     top: 36px;
   }
   .header-menu.open span:nth-child(1) {
+    -webkit-transform: rotate(45deg);
     top: 28px;
-    transform: rotate(45deg);
+            transform: rotate(45deg);
   }
   .header-menu.open span:nth-child(2) {
-    width: 0;
     left: 50%;
+    width: 0;
   }
   .header-menu.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
     top: 28px;
-    transform: rotate(-45deg);
+            transform: rotate(-45deg);
   }
 }
 
@@ -342,8 +356,8 @@ a.link-text {
     display: none;
   }
   .header-nav.open {
-    display: block;
     -webkit-animation: fadeIn .3s;
+    display: block;
             animation: fadeIn .3s;
   }
 }
@@ -352,12 +366,13 @@ a.link-text {
 	ヘッダー
 ----------------------------------------------------*/
 header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
+  -webkit-transform: translateY(0);
   z-index: 9999;
-  transform: translateY(0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+          transform: translateY(0);
 }
 
 @media screen and (min-width: 961px) {
@@ -371,50 +386,53 @@ header {
   }
 }
 
+.header-logo {
+  height: 60px;
+  background-color: #fff;
+}
+
 @-webkit-keyframes headerScrollDown {
   0% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   100% {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
 }
 
 @keyframes headerScrollDown {
   0% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   100% {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
 }
 
 @-webkit-keyframes headerScrollUp {
   0% {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
   100% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
 }
 
 @keyframes headerScrollUp {
   0% {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
   }
   100% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
-}
-
-.header-logo {
-  height: 60px;
-  color: #fff;
-  background-color: #000;
-}
-
-.header-logo a {
-  color: #fff;
 }
 
 /*----------------------------------------------------
@@ -432,7 +450,8 @@ header {
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: #98e0af;
+  background-color: #000;
+  color: #fff;
 }
 
 /*----------------------------------------------------
@@ -461,8 +480,8 @@ header {
 }
 
 .fadeIn.show {
-  display: block;
   -webkit-animation: fadeIn 0.6s linear;
+  display: block;
           animation: fadeIn 0.6s linear;
 }
 
@@ -509,23 +528,27 @@ header {
 
 @-webkit-keyframes fadeInUp {
   from {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
     opacity: 1;
-    transform: translateY(0px);
   }
 }
 
 @keyframes fadeInUp {
   from {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
     opacity: 1;
-    transform: translateY(0px);
   }
 }
 
@@ -534,15 +557,28 @@ header {
 ----------------------------------------------------*/
 input[type=submit] {
   -webkit-appearance: none;
+  border: none;
+  outline: none;
 }
 
 button {
   -webkit-appearance: none;
+  border: none;
+  outline: none;
 }
 
 button, input, select, textarea {
-  font-family: inherit;
   font-size: 100%;
+  font-family: inherit;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  position: relative;
+  top: -0.125em;
+  width: 0.875em;
+  height: 0.875em;
+  margin-right: 0.25em;
 }
 
 /*----------------------------------------------------
@@ -558,21 +594,21 @@ button, input, select, textarea {
 .slick-prev,
 .slick-next {
   display: block;
+  z-index: 10;
   position: absolute;
   top: 50%;
   width: 1rem;
   height: 1rem;
   padding: 0;
   border: none;
-  border-right: 1px solid #000;
   border-top: 1px solid #000;
+  border-right: 1px solid #000;
   outline: none;
   background: transparent;
   color: transparent;
   font-size: 0;
   line-height: 0;
   cursor: pointer;
-  z-index: 10;
 }
 
 .slick-prev.slick-disabled:before,
@@ -581,22 +617,25 @@ button, input, select, textarea {
 }
 
 .slick-prev {
+  -webkit-transform: translate(0, -50%) rotate(-135deg);
   left: 1rem;
-  transform: translate(0, -50%) rotate(-135deg);
+          transform: translate(0, -50%) rotate(-135deg);
 }
 
 .slick-next {
+  -webkit-transform: translate(0, -50%) rotate(45deg);
   right: 1rem;
-  transform: translate(0, -50%) rotate(45deg);
+          transform: translate(0, -50%) rotate(45deg);
 }
 
 /* Dots */
 .slick-dots {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, -200%);
+  -webkit-transform: translate(-50%, -200%);
   display: flex;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+          transform: translate(-50%, -200%);
 }
 
 .slick-dots li {
@@ -611,15 +650,15 @@ button, input, select, textarea {
 
 .slick-dots li button {
   display: block;
-  padding: 0;
-  line-height: 0;
   width: 16px;
   height: 16px;
+  padding: 0;
+  border: 0;
   border-radius: 100%;
+  outline: none;
   background-color: #fff;
   font-size: 0;
-  outline: none;
-  border: 0;
+  line-height: 0;
 }
 
 .slick-dots li.slick-active button {
@@ -919,4 +958,102 @@ button, input, select, textarea {
 
 .break_line {
   display: inline-block;
+}
+
+/*----------------------------------------------------
+	widget-editor
+----------------------------------------------------*/
+.widget-editor {
+  font-size: 16px;
+  line-height: 2;
+}
+
+.widget-editor h1 {
+  margin: 0.67em 0;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.widget-editor h2 {
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.widget-editor h3 {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: 1.17em;
+}
+
+.widget-editor h4 {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.widget-editor h5 {
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  font-weight: bold;
+  font-size: 0.83em;
+}
+
+.widget-editor strong {
+  font-weight: bold;
+}
+
+.widget-editor em {
+  font-style: italic;
+}
+
+.widget-editor ul {
+  margin-left: 1.5em;
+}
+
+.widget-editor li {
+  list-style: disc;
+}
+
+.widget-editor > * + * {
+  margin-top: 1.5em;
+  word-break: break-all;
+}
+
+.widget-editor a {
+  color: #31A2F2;
+  text-decoration: underline;
+}
+
+.widget-editor a:hover {
+  text-decoration: none;
+}
+
+.widget-editor table th {
+  font-weight: bold;
+}
+
+.widget-editor table th,
+.widget-editor table td {
+  padding: .5em .5em;
+  border: 1px solid #ccc;
+}
+
+.widget-editor a {
+  color: #1DA1F2;
+  text-decoration: underline;
+}
+
+.widget-editor a:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 560px) {
+  .widget-editor {
+    font-size: 14px;
+  }
 }
