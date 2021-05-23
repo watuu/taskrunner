@@ -49,13 +49,10 @@ a.link-text {
 		-webkit-tap-highlight-color: transparent;
 	}
 }
-:target:before {
+[data-scroll-target] {
 	content: '';
 	display: block;
 	position: relative;
 	pointer-events: none;
-	top: (-$scroll-margin-top);
-	@include sp {
-		top: (-$scroll-margin-top-SP);
-	}
+	top: calc(-1 * var(--header-height));
 }

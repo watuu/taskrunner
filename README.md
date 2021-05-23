@@ -30,3 +30,24 @@ npm run watch
 
 # 各サイトに必要な情報あれば下記に記述
 
+polifill
+- position:sticky;
+x - css-variables
+
+CSS
+x - configの整理
+x - スクロールアンカー
+x - HTML5
+x - media
+
+
+JS
+- swipper
+- スムーズスクロール GSAP
+- barba
+
+x スライダー
+x 慣性スクロール
+x ページ内アンカー
+pjax
+

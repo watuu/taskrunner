@@ -5,7 +5,6 @@ require('../../vendor/validate/localization/messages_ja.js');
 export default class contact {
     constructor() {
         let common = new Common();
-        console.log('contact.init');
         if ($('#contactForm').length) {
             $('#contactForm').validate({
                 errorElement: 'p',

@@ -8,6 +8,7 @@ module.exports = {
             //     'iOS >= 10',
             //     'Android >= 4.4'
             // ],
+            grid: "autoplace",
             cascade: true
         }),
         require('css-declaration-sorter')({

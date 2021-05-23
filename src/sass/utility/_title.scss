@@ -1,10 +1,12 @@
 
 /*----------------------------------------------------
-	コンテナ
+	title
 ----------------------------------------------------*/
-.container {
-	@include container;
+.titleA {
+	cursor: pointer;
 }
-.container--l {
-	max-width: ($container-width-L + 80px);
+
+@include pc {
+}
+@include sp-tab {
 }

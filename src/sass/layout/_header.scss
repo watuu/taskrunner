@@ -3,24 +3,23 @@
 	ヘッダー
 ----------------------------------------------------*/
 header {
+	width: 100%;
+	height: var(--header-height);
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 100%;
 	z-index: 9999;
 	transform: translateY(0);
+	//mix-blend-mode: difference;
+	background: rgba(#efefef, 0.5);
 	@include pc {
 		.scrollDown & {
-			animation: headerScrollDown .3s ease-out forwards;
+			//animation: headerScrollDown .3s ease-out forwards;
 		}
 		.scrollUp & {
-			animation: headerScrollUp .3s ease-out forwards;
+			//animation: headerScrollUp .3s ease-out forwards;
 		}
 	}
-}
-.header-logo {
-	height: 60px;
-	background-color: #fff;
 }
 @keyframes headerScrollDown {
 	0% {
@@ -38,11 +37,10 @@ header {
 		transform: translateY(0);
 	}
 }
-@include pc {
-}
-@include sp-tab {
-}
-@media (hover: hover) {
+.header-content__wrap {
+	@include pc {
+		display: flex;
+	}
 }
 
 

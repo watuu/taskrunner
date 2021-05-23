@@ -1,10 +1,14 @@
 
 /*----------------------------------------------------
-	コンテナ
+	btn
 ----------------------------------------------------*/
-.container {
-	@include container;
+.btnA {
+	cursor: pointer;
+	@media (hover:hover) {
+	}
 }
-.container--l {
-	max-width: ($container-width-L + 80px);
+
+@include pc {
+}
+@include sp-tab {
 }

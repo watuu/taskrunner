@@ -1,4 +1,13 @@
 import objectFitImages from 'object-fit-images';
+import LocomotiveScroll from 'locomotive-scroll';
+import 'locomotive-scroll/dist/locomotive-scroll.css';
+import Top from "./top";
+
+/*
+ * Locomotive
+ * https://github.com/locomotivemtl/locomotive-scroll
+ *
+ */
 export default class common {
 
     constructor() {
@@ -20,9 +29,14 @@ export default class common {
         this.loader();
         this.scrollEvent();
         this.setDeviceClassToBody();
-        this.smoothScroll();
+        // this.smoothScroll();
+        // this.locomotive();
         this.globalMenu();
         objectFitImages();
+    }
+
+    reload() {
+        new Top();
     }
 
     /*
@@ -42,7 +56,10 @@ export default class common {
      * スクロール動作
      */
     scrollEvent() {
+        // vars
         let defPos = 0;
+
+        // functions
         $(window).scroll(function() {
             debounce(addBodyScrollClass, 10);
         });
@@ -72,47 +89,74 @@ export default class common {
      * グローバルメニューの動作
      */
     globalMenu() {
-        // PCナビ
+
+        // vars
+        let classNameScroll = 'scrolled';
+        let marginScrolled = 300;
+        let $headerMenu = $('.header-menu');
+        let $headerNav = $('.header-nav');
+        let $asideNav = $('.aside-nav');
+
+        // functions
+        // スクロール判定
         $(window).on('scroll resize orientationchange', function(){
-            let margin = 300;
+            let margin = marginScrolled;
             if ($(this).scrollTop() > margin) {
-                $('body').addClass('scrolled');
-                $('.header-nav').addClass('scroll');
+                $('body').addClass(classNameScroll);
             } else if ($(this).scrollTop() <= margin) {
-                $('body').removeClass('scrolled');
-                $('.header-nav').removeClass('scroll');
+                $('body').removeClass(classNameScroll);
             }
         });
 
-        // スマホメニュー
-        $('.header-menu').on('click', function() {
+        // ハンバーガーメニュー
+        $headerMenu.on('click', function() {
             setNavHeight();
-            $('.header-menu').toggleClass('open');
-            if ($('.header-menu').hasClass('open')) {
-                $('.header-nav').addClass('open');
+            $headerMenu.toggleClass('open');
+            if ($headerMenu.hasClass('open')) {
+                $headerNav.addClass('open');
                 $('body').addClass('no-scroll');
             } else {
-                $('.header-nav').removeClass('open').addClass('closing');
+                $headerNav.removeClass('open').addClass('closing');
                 $('body').removeClass('no-scroll');
                 setTimeout(function(){
-                    $('.header-nav').removeClass('closing');
+                    $headerNav.removeClass('closing');
                 },2000);
             }
         });
-        $('.header-nav a').on('click', function() {
-            $('.header-menu').removeClass('open');
-            $('.header-nav').removeClass('open').addClass('closing');
+        $headerNav.find('a').on('click', function() {
+            $headerMenu.removeClass('open');
+            $headerNav.removeClass('open').addClass('closing');
             $('body').removeClass('no-scroll');
             setTimeout(function(){
-                $('.header-nav').removeClass('closing');
+                $headerNav.removeClass('closing');
             },2000);
         });
         function setNavHeight() {
-            $('.header-nav').css('height', (window.innerHeight - $('header').height()) + 'px');
+            $headerNav.css('height', (window.innerHeight - $('header').height()) + 'px');
         }
         function setModalHeight() {
-            $('.aside-nav').css('height', (window.innerHeight - $('header').height()) + 'px');
+            $asideNav.css('height', (window.innerHeight - $('header').height()) + 'px');
         }
+    }
+
+    /*
+     * locomotive
+     * 慣性スクロール
+     */
+    locomotive() {
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true
+        });
+        $(document).on('click', '[data-scroll-anchor]', function(e){
+            e.preventDefault();
+            let href = $(this).attr('href');
+            let index = href.indexOf("#");
+            let target = href.slice(index);
+            scroll.scrollTo(target, {
+                duration: 500
+            });
+        });
     }
 
     /*
@@ -121,9 +165,14 @@ export default class common {
      */
     smoothScroll() {
 
-        $('a[href^="#"]').not('.noscroll').click(function () {
+        // vars
+        let elm = $('a[data-scroll-anchor]');
+
+        // functions
+        elm.not('.noscroll').click(function () {
             let href = $(this).attr('href');
-            let target = $(href == '#' || href == '' ? 'html' : href);
+            let index = href.indexOf("#");
+            let target = $(href.slice(index));
             let targetPos = target.offset().top; // 移動する位置
             let scrollTop = $(window).scrollTop(); // 現在のスクロール位置
             let scroll = scrollTop - targetPos; // 移動量
@@ -142,10 +191,11 @@ export default class common {
 
             $('html, body').animate({
                 scrollTop: targetPos
-            }, duration, 'swing');
+            }, duration, 'swing', function(){
+                location.href = href;
+            });
             return false;
         });
-
     }
 
     /*

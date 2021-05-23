@@ -1,11 +1,16 @@
 import {default as Common} from './common';
-// require('jquery-jpostal-ja');
-// require('../../vendor/validate/jquery.validate.min.js');
-// require('../../vendor/validate/localization/messages_ja.js');
+import sliderSlick from "./slider-slick";
+// import sliderSwiper from "./slider-swiper";
 
 export default class Top {
     constructor() {
         let common = new Common();
         console.log('top.init');
+
+        var slide = new sliderSlick();
+        slide.top();
+
+        // var swiper = new sliderSwiper();
+        // swiper.top();
     }
 }

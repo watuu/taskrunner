@@ -5,6 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 /*
  * GSAP
  * https://greensock.com/cheatsheet/
+ * https://gist.github.com/lunelson/7d83ca0c8bdfab170dd3
+ * https://greensock.com/docs/v2/Easing
  */
 export default class Gsap {
     constructor() {
@@ -12,13 +14,7 @@ export default class Gsap {
         console.log('gsap.init');
         gsap.registerPlugin(ScrollTrigger);
 
-        $('[data-trigger]').each(function(){
-            ScrollTrigger.create({
-                trigger: this,
-                toggleClass: 'visible',
-                once: true,
-            })
-        });
+        //this.init();
 
         if ($('body').hasClass('home')) {
             $(window).on('load', () => {
@@ -26,6 +22,21 @@ export default class Gsap {
             })
         }
 
+    }
+
+    init() {
+        // vars
+        let $elmTrigger = $('[data-trigger]');
+        let classNameTrigger = 'visible';
+
+        // 汎用トリガー
+        $elmTrigger.each(function(){
+            ScrollTrigger.create({
+                trigger: this,
+                toggleClass: classNameTrigger,
+                once: true,
+            })
+        });
     }
 
     top() {

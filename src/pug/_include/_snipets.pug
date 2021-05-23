@@ -1,0 +1,32 @@
+//- loop
+- for (var x = 1; x <= 8; x++)
+    li(class="aaa" + x "bbb") No.#{x}個
+        img(src= src + "./images/sample0" + (x % 3 + 1) + ".png")
+
+//- 三項演算子
+li(class=pageClass =="company" ? "current": "")
+
+//- svg
+svg(width=22 height=18)
+    title title
+    use(href="#ico_arrow_r")
+
+//- picture
+picture
+    source(srcset=img+"" media="(min-width: 800px)")
+    img(src=img+"" loading="lazy" width="" height="")
+
+//- slide
+.slide-content
+    .swiper-wrapper
+        .swiper-slide.slide-w1280
+            img(src='http://placehold.jp/666666/ffffff/1280x600.png' alt='' width=1280 height=600)
+        .swiper-slide.slide-w1280
+            img(src='http://placehold.jp/000000/ffffff/1280x600.png' alt='' width=1280 height=600)
+        .swiper-slide.slide-w1280
+            img(src='http://placehold.jp/333333/ffffff/1280x600.png' alt='' width=1280 height=600)
+        .swiper-slide.slide-w1280
+            img(src='http://placehold.jp/000000/ffffff/1280x600.png' alt='' width=1280 height=600)
+    .swiper-pagination
+    .swiper-button-prev
+    .swiper-button-next

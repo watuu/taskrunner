@@ -12,7 +12,8 @@ $serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "H
 // $sans: "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 // $serif: YakuHanMP, "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;;
 
-$ease1: cubic-bezier(.7,0,.3,1);
+$easeA: cubic-bezier(.1,.05,.2,1); // ease-out
+$easeB: cubic-bezier(.5,0,.2,1); // ease-in-out
 
 $breakpointSP: 560px;
 $breakpointTAB: 960px;
@@ -29,27 +30,6 @@ $scroll-margin-top-SP: 60px;
 // ===================================================================
 // container
 // ===================================================================
-@mixin visible {
-	display: inline;
-	&.block { display: block; }
-	//&.inline-block { display: inline-block; }
-}
-@mixin hide {
-	display: none;
-	&.block { display: none; }
-	//&.inline-block { display: none; }
-}
-@mixin clearfix {
-	*zoom: 1;
-	&:before,
-	&:after {
-		content: "";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
-}
 @mixin container{
 	position: relative;
 	margin-left: auto; margin-right: auto;
@@ -71,7 +51,6 @@ $scroll-margin-top-SP: 60px;
 		padding-right: 20px;
 	}
 }
-
 
 // ===================================================================
 // mixin responsive
@@ -115,29 +94,8 @@ $scroll-margin-top-SP: 60px;
 	@media screen and (min-width: ($breakpointSP + 1) ){@content;}
 }
 
-
 // ===================================================================
 // mixin utility
 // ===================================================================
-@mixin visible {
-	display: inline;
-	&.block { display: block; }
-	//&.inline-block { display: inline-block; }
-}
-@mixin hide {
-	display: none;
-	&.block { display: none; }
-	//&.inline-block { display: none; }
-}
-@mixin clearfix {
-	*zoom: 1;
-	&:before,
-	&:after {
-		content: "";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
-}
+
 

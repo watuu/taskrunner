@@ -125,6 +125,18 @@ article, main, aside, details, figcaption, figure, footer, header, hgroup, menu,
   display: block;
 }
 
+@media screen and (min-width: 961px) {
+  :root {
+    --header-height: 120px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    --header-height: 60px;
+  }
+}
+
 /*----------------------------------------------------
 	レスポンシブ
 ----------------------------------------------------*/
@@ -242,18 +254,12 @@ a.link-text {
   }
 }
 
-:target:before {
+[data-scroll-target] {
   display: block;
   position: relative;
-  top: -60px;
+  top: calc(-1 * var(--header-height));
   content: '';
   pointer-events: none;
-}
-
-@media screen and (max-width: 560px) {
-  :target:before {
-    top: -60px;
-  }
 }
 
 /*----------------------------------------------------
@@ -298,6 +304,43 @@ a.link-text {
 /*----------------------------------------------------
 	body
 ----------------------------------------------------*/
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+body.no-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
+@-webkit-keyframes bodyLeaving {
+  0%, 100% {
+    opacity: 1;
+  }
+  30%, 70% {
+    opacity: 0;
+  }
+}
+
+@keyframes bodyLeaving {
+  0%, 100% {
+    opacity: 1;
+  }
+  30%, 70% {
+    opacity: 0;
+  }
+}
+
+.body-wrap {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
 /*----------------------------------------------------
 	ヘッダー メニュー
 ----------------------------------------------------*/
@@ -351,14 +394,15 @@ a.link-text {
 /*----------------------------------------------------
 	ヘッダーナビ
 ----------------------------------------------------*/
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 961px) {
   .header-nav {
-    display: none;
+    margin-left: auto;
   }
-  .header-nav.open {
-    -webkit-animation: fadeIn .3s;
-    display: block;
-            animation: fadeIn .3s;
+  .header-nav ul {
+    display: flex;
+  }
+  .header-nav li + li {
+    margin-left: 10px;
   }
 }
 
@@ -372,23 +416,9 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--header-height);
           transform: translateY(0);
-}
-
-@media screen and (min-width: 961px) {
-  .scrollDown header {
-    -webkit-animation: headerScrollDown .3s ease-out forwards;
-            animation: headerScrollDown .3s ease-out forwards;
-  }
-  .scrollUp header {
-    -webkit-animation: headerScrollUp .3s ease-out forwards;
-            animation: headerScrollUp .3s ease-out forwards;
-  }
-}
-
-.header-logo {
-  height: 60px;
-  background-color: #fff;
+  background: rgba(239, 239, 239, 0.5);
 }
 
 @-webkit-keyframes headerScrollDown {
@@ -435,12 +465,30 @@ header {
   }
 }
 
+@media screen and (min-width: 961px) {
+  .header-content__wrap {
+    display: flex;
+  }
+}
+
 /*----------------------------------------------------
 	main
 ----------------------------------------------------*/
+main section {
+  min-height: calc(100vh - var(--header-height));
+}
+
+main section:nth-of-type(odd) {
+  background: #eee;
+}
+
 /*----------------------------------------------------
 	フッター
 ----------------------------------------------------*/
+footer {
+  background-color: #eee;
+}
+
 /*----------------------------------------------------
 	top-mv
 ----------------------------------------------------*/
@@ -449,14 +497,23 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
-  background-color: #000;
+  height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  background: #000 url(../img/flower.jpg) center center/cover;
   color: #fff;
 }
 
 /*----------------------------------------------------
 	widget-item
 ----------------------------------------------------*/
+#slide01 {
+  position: relative;
+}
+
+.section1.section1 {
+  background: #000 url(../img/hart.jpg) center center/cover;
+}
+
 .widget-item {
   margin: 50px 0;
   padding: 50px 0;
@@ -469,6 +526,10 @@ header {
 /*----------------------------------------------------
 	xxx
 ----------------------------------------------------*/
+.swiper-slide img {
+  height: auto;
+}
+
 /*----------------------------------------------------
 	xxx
 ----------------------------------------------------*/
@@ -550,6 +611,13 @@ header {
             transform: translateY(0px);
     opacity: 1;
   }
+}
+
+/*----------------------------------------------------
+	btn
+----------------------------------------------------*/
+.btnA {
+  cursor: pointer;
 }
 
 /*----------------------------------------------------
@@ -683,18 +751,25 @@ input[type="checkbox"] {
   }
 }
 
+:root {
+  /*
+  --swiper-pagination-color: var(--swiper-theme-color);
+  */
+}
+
+/* Common Styles */
+/* Bullets */
+/* Progress */
+/*----------------------------------------------------
+	title
+----------------------------------------------------*/
+.titleA {
+  cursor: pointer;
+}
+
 /*----------------------------------------------------
 	汎用クラス
 ----------------------------------------------------*/
-.fadeIn {
-  display: none;
-}
-
-.fadeIn.show {
-  -webkit-animation: fadeIn 0.6s linear;
-          animation: fadeIn 0.6s linear;
-}
-
 .bold,
 .strong {
   font-weight: bold;
@@ -720,236 +795,6 @@ input[type="checkbox"] {
 .indent--2 {
   padding-left: 2em;
   text-indent: -2em;
-}
-
-.mb5 {
-  margin-bottom: 5px !important;
-}
-
-.mb10 {
-  margin-bottom: 10px !important;
-}
-
-.mb15 {
-  margin-bottom: 15px !important;
-}
-
-.mb20 {
-  margin-bottom: 20px !important;
-}
-
-.mb25 {
-  margin-bottom: 25px !important;
-}
-
-.mb30 {
-  margin-bottom: 30px !important;
-}
-
-.mb35 {
-  margin-bottom: 35px !important;
-}
-
-.mb40 {
-  margin-bottom: 40px !important;
-}
-
-.mb45 {
-  margin-bottom: 45px !important;
-}
-
-.mb50 {
-  margin-bottom: 50px !important;
-}
-
-.mb55 {
-  margin-bottom: 55px !important;
-}
-
-.mb60 {
-  margin-bottom: 60px !important;
-}
-
-.mb65 {
-  margin-bottom: 65px !important;
-}
-
-.mb70 {
-  margin-bottom: 70px !important;
-}
-
-.mb75 {
-  margin-bottom: 75px !important;
-}
-
-.mb80 {
-  margin-bottom: 80px !important;
-}
-
-.mb100 {
-  margin-bottom: 100px !important;
-}
-
-@media screen and (max-width: 960px) {
-  .mb5 {
-    margin-bottom: 0.78125vw !important;
-  }
-  .mb10 {
-    margin-bottom: 1.5625vw !important;
-  }
-  .mb15 {
-    margin-bottom: 2.34375vw !important;
-  }
-  .mb20 {
-    margin-bottom: 3.125vw !important;
-  }
-  .mb25 {
-    margin-bottom: 3.90625vw !important;
-  }
-  .mb30 {
-    margin-bottom: 4.6875vw !important;
-  }
-  .mb35 {
-    margin-bottom: 5.46875vw !important;
-  }
-  .mb40 {
-    margin-bottom: 6.25vw !important;
-  }
-  .mb45 {
-    margin-bottom: 7.03125vw !important;
-  }
-  .mb50 {
-    margin-bottom: 7.8125vw !important;
-  }
-  .mb55 {
-    margin-bottom: 8.59375vw !important;
-  }
-  .mb60 {
-    margin-bottom: 9.375vw !important;
-  }
-  .mb65 {
-    margin-bottom: 10.15625vw !important;
-  }
-  .mb70 {
-    margin-bottom: 10.9375vw !important;
-  }
-  .mb75 {
-    margin-bottom: 11.71875vw !important;
-  }
-  .mb80 {
-    margin-bottom: 12.5vw !important;
-  }
-  .mb100 {
-    margin-bottom: 15.625vw !important;
-  }
-}
-
-.fz10 {
-  font-size: 0.625em;
-}
-
-.fz12 {
-  font-size: 0.75em;
-}
-
-.fz13 {
-  font-size: 0.8125em;
-}
-
-.fz14 {
-  font-size: 0.875em;
-}
-
-.fz15 {
-  font-size: 0.9375em;
-}
-
-.fz16 {
-  font-size: 1em;
-}
-
-.fz17 {
-  font-size: 1.0625em;
-}
-
-.fz18 {
-  font-size: 1.125em;
-}
-
-.fz20 {
-  font-size: 1.25em;
-}
-
-.fz22 {
-  font-size: 1.375em;
-}
-
-.fz24 {
-  font-size: 1.5em;
-}
-
-.fz26 {
-  font-size: 1.625em;
-}
-
-.fz28 {
-  font-size: 1.75em;
-}
-
-.fz30 {
-  font-size: 1.875em;
-}
-
-.fz32 {
-  font-size: 2em;
-}
-
-@media screen and (max-width: 960px) {
-  .fz10--sp {
-    font-size: 0.625em;
-  }
-  .fz12--sp {
-    font-size: 0.75em;
-  }
-  .fz13--sp {
-    font-size: 0.8125em;
-  }
-  .fz14--sp {
-    font-size: 0.875em;
-  }
-  .fz15--sp {
-    font-size: 0.9375em;
-  }
-  .fz16--sp {
-    font-size: 1em;
-  }
-  .fz17--sp {
-    font-size: 1.0625em;
-  }
-  .fz18--sp {
-    font-size: 1.125em;
-  }
-  .fz20--sp {
-    font-size: 1.25em;
-  }
-  .fz22--sp {
-    font-size: 1.375em;
-  }
-  .fz24--sp {
-    font-size: 1.5em;
-  }
-  .fz26--sp {
-    font-size: 1.625em;
-  }
-  .fz28--sp {
-    font-size: 1.75em;
-  }
-  .fz30--sp {
-    font-size: 1.875em;
-  }
-  .fz32--sp {
-    font-size: 2em;
-  }
 }
 
 .hide {

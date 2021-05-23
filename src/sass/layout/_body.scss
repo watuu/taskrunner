@@ -2,18 +2,33 @@
 /*----------------------------------------------------
 	body
 ----------------------------------------------------*/
+html {
+	height: 100%;
+}
 body {
+	height: 100%;
+	&.is-leaving {
+		// animation: bodyLeaving .8s forwards;
+	}
 	@include pc {
 	}
 	@include sp-tab {
 	}
 }
 body.no-scroll {
-	//overflow: hidden;
-	//height: 100vh;
+	overflow: hidden;
+	height: 100vh;
 }
-@media all and (-ms-high-contrast: none) {
-	//body {
-	//	font-family: "メイリオ", Meiryo, "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-	//}
+@keyframes bodyLeaving {
+	0%, 100% {
+		opacity: 1;
+	}
+	30%, 70% {
+		opacity: 0;
+	}
+}
+.body-wrap {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
 }
