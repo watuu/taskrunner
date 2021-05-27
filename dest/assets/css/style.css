@@ -474,14 +474,6 @@ header {
 /*----------------------------------------------------
 	main
 ----------------------------------------------------*/
-main section {
-  min-height: calc(100vh - var(--header-height));
-}
-
-main section:nth-of-type(odd) {
-  background: #eee;
-}
-
 /*----------------------------------------------------
 	フッター
 ----------------------------------------------------*/
@@ -493,14 +485,33 @@ footer {
 	top-mv
 ----------------------------------------------------*/
 .top-mv {
+  position: relative;
+  width: 100%;
+  height: calc(100vh);
+}
+
+.top-mv .top-mv__inner {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - var(--header-height));
-  margin-top: var(--header-height);
-  background: #000 url(../img/flower.jpg) center center/cover;
+  height: calc(100vh);
+  background: #000 url(../img/pic1.jpg) center center/cover;
   color: #fff;
+  font-weight: bold;
+  font-size: 3em;
+  font-family: Poppins, DIN, Futura, serif;
+  letter-spacing: 0.2em;
+}
+
+.top-mv ._txt {
+  -webkit-text-stroke: 4px #ccc;
+  display: block;
+  text-align: center;
+}
+
+.top-mv ._txt:before {
+  content: attr(data-text);
 }
 
 /*----------------------------------------------------
@@ -511,13 +522,21 @@ footer {
 }
 
 .section1.section1 {
-  background: #000 url(../img/hart.jpg) center center/cover;
+  background: #000 url(../img/pic2.jpg) center center/cover;
 }
 
 .widget-item {
   margin: 50px 0;
   padding: 50px 0;
   background-color: #eee;
+}
+
+section {
+  min-height: calc(100vh - var(--header-height));
+}
+
+section:nth-of-type(odd) {
+  background: #eee;
 }
 
 /*----------------------------------------------------
@@ -647,6 +666,40 @@ input[type="checkbox"] {
   width: 0.875em;
   height: 0.875em;
   margin-right: 0.25em;
+}
+
+/*----------------------------------------------------
+	legacy-browser
+----------------------------------------------------*/
+.legacy-browser {
+  display: flex;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.legacy-browser__body {
+  color: #000;
+  line-height: 2;
+  text-align: center;
+}
+
+.legacy-browser__body a {
+  color: #1DA1F2;
+}
+
+@supports (display: grid) {
+  .legacy-browser {
+    display: none;
+    z-index: -1;
+    pointer-events: none;
+  }
 }
 
 /*----------------------------------------------------

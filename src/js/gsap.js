@@ -14,58 +14,55 @@ export default class Gsap {
         console.log('gsap.init');
         gsap.registerPlugin(ScrollTrigger);
 
-        //this.init();
+        // this.init();
+    }
 
-        if ($('body').hasClass('home')) {
-            $(window).on('load', () => {
-                this.top();
-            })
-        }
-
+    update() {
+        ScrollTrigger.update;
     }
 
     init() {
-        // vars
-        let $elmTrigger = $('[data-trigger]');
-        let classNameTrigger = 'visible';
-
-        // 汎用トリガー
-        $elmTrigger.each(function(){
-            ScrollTrigger.create({
-                trigger: this,
-                toggleClass: classNameTrigger,
-                once: true,
-            })
-        });
-    }
-
-    top() {
-        // トップ MV イントロ
-        let tl = gsap.timeline();
-        tl.to('.top-mv__bg',{
+        // パララックス
+        let elm1 = '.top-store__bg';
+        gsap.set(elm1, {y: -100,});
+        gsap.from(elm1, {
             scrollTrigger: {
-                trigger: '.top-mv__bg',
-                scrub: true,
-                // markers: true,
-            },
-            delay: 0,
-            duration: 0,
-            className:"+=top-mv__bg animated",
-        })
-        .set('.top-mv__body ._ico', {
-            delay: 1.5,
-            duration: 0,
-            className:"+=_ico animated",
-        });
-
-        // トップ MV パララックス
-        gsap.from('.top-mv__body', {
-            scrollTrigger: {
-                trigger: '.top-mv__body',
+                trigger: elm1,
                 scrub: true
             },
             y: -100,
-            ease: "none",
+            ease: 'none',
+        });
+
+        // 汎用
+        $('[data-animation="fadeIn"]').each(function(){
+            gsap.set($(this), {y: 100,});
+            gsap.to($(this), {
+                scrollTrigger: {
+                    trigger: $(this),
+                },
+                y: 0,
+                duration: 3,
+                ease: Power2.easeOut,
+            });
+        });
+
+    }
+
+    top() {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".top-mv",
+                start: "top top",
+                end: () => innerHeight * 3,
+                markers: true,
+                scrub: true,
+                pin: true,
+                anticipatePin: 1
+            }
+        })
+        .to('._txt', {
+            scale: 3.3333,
         });
     }
 }

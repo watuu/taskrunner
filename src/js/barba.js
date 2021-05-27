@@ -1,7 +1,7 @@
 import barba from '@barba/core';
 import {gsap} from 'gsap';
-import LocomotiveScroll from 'locomotive-scroll';
 import {default as Common} from "./common";
+import Locomotive from "./locomotive";
 
 /*
  * Barba pjax
@@ -15,11 +15,13 @@ export default class Barba {
         let $mask = $('body');
         let leavingClass = 'is-leaving';
         let leavingDuration = 1000;
-        // const scroll = new LocomotiveScroll();
+        let obj_locomotive;
 
         // functions
         barba.hooks.after(() => {
-            // scroll.init();
+            if (constants.is_locomotive) {
+                obj_locomotive.update();
+            }
         });
 
         barba.init({
@@ -27,6 +29,11 @@ export default class Barba {
                 {
                     name: 'default-transition',
                     debug: true,
+                    once: () => {
+                        if (constants.is_locomotive) {
+                            obj_locomotive = new Locomotive();
+                        }
+                    },
                     before() {
                         $mask.addClass(leavingClass);
                         setTimeout(function(){
@@ -36,16 +43,22 @@ export default class Barba {
                     leave(data) {
                         gsap.to(data.current.container, {
                             opacity: 0,
-                            y: 100,
                         });
                     },
                     afterLeave() {
                     },
+                    beforeEnter(data) {
+                        if (constants.is_locomotive) {
+                            obj_locomotive.setScroll(0,0);
+                        } else {
+                            window.scrollTo(0, 0);
+                        }
+                    },
                     enter(data) {
                         gsap.from(data.next.container, {
                             opacity: 0,
-                            y: 100,
                         });
+                        common.reload();
                     }
                 }
             ],
@@ -56,12 +69,5 @@ export default class Barba {
             },
             prevent: ({ el }) => el.hasAttribute("data-scroll-anchor")
         });
-        barba.hooks.enter(() => {
-            window.scrollTo(0, 0);
-            common.reload();
-        });
-    }
-    top() {
-
     }
 }

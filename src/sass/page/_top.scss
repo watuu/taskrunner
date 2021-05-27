@@ -3,14 +3,31 @@
 	top-mv
 ----------------------------------------------------*/
 .top-mv {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	position: relative;
 	width: 100%;
-	height: calc(100vh - var(--header-height));
-	margin-top: var(--header-height);
-	color: #fff;
-	background: #000 url(../img/flower.jpg) center center /cover;
+	height: calc(100vh);
+	.top-mv__inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: calc(100vh);
+		color: #fff;
+		font-family: Poppins, DIN, Futura, serif;
+		font-size: 3em;
+		font-weight: bold;
+		letter-spacing: 0.2em;
+		background: #000 url(../img/pic1.jpg) center center /cover;
+	}
+	._txt {
+		display: block;
+		text-align: center;
+		-webkit-text-stroke: 4px #ccc;
+		&:before {
+			content: attr(data-text);
+		}
+		//
+	}
 }
 /*----------------------------------------------------
 	widget-item
@@ -19,12 +36,18 @@
 	position: relative;
 }
 .section1.section1 {
-	background: #000 url(../img/hart.jpg) center center /cover;
+	background: #000 url(../img/pic2.jpg) center center /cover;
 }
 .widget-item {
 	margin: 50px 0;
 	padding: 50px 0;
 	background-color: #eee;
+}
+section {
+	min-height: calc(100vh - var(--header-height));
+	&:nth-of-type(odd) {
+		background: #eee;
+	}
 }
 /*----------------------------------------------------
 	xxx

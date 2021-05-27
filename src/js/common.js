@@ -1,18 +1,15 @@
 import objectFitImages from 'object-fit-images';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
 import Top from "./top";
+import cssVars from 'css-vars-ponyfill';
 
 /*
- * Locomotive
- * https://github.com/locomotivemtl/locomotive-scroll
- *
+ * common
+ * 共通変数と関数
  */
 export default class common {
 
     constructor() {
         this.global = 'global';
-        console.log('common.init');
     }
 
     isSP() {
@@ -29,10 +26,14 @@ export default class common {
         this.loader();
         this.scrollEvent();
         this.setDeviceClassToBody();
-        // this.smoothScroll();
-        // this.locomotive();
         this.globalMenu();
-        objectFitImages();
+        if (!constants.is_locomotive) {
+            this.smoothScroll();
+        }
+        if (constants.enabled_legacy_browser) {
+            objectFitImages();
+            cssVars();
+        }
     }
 
     reload() {
@@ -137,26 +138,6 @@ export default class common {
         function setModalHeight() {
             $asideNav.css('height', (window.innerHeight - $('header').height()) + 'px');
         }
-    }
-
-    /*
-     * locomotive
-     * 慣性スクロール
-     */
-    locomotive() {
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true
-        });
-        $(document).on('click', '[data-scroll-anchor]', function(e){
-            e.preventDefault();
-            let href = $(this).attr('href');
-            let index = href.indexOf("#");
-            let target = href.slice(index);
-            scroll.scrollTo(target, {
-                duration: 500
-            });
-        });
     }
 
     /*

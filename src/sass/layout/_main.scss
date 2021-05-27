@@ -3,12 +3,6 @@
 	main
 ----------------------------------------------------*/
 main {
-	section {
-		min-height: calc(100vh - var(--header-height));
-		&:nth-of-type(odd) {
-			background: #eee;
-		}
-	}
 	@include pc {
 	}
 	@include sp-tab {

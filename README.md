@@ -51,3 +51,7 @@ x 慣性スクロール
 x ページ内アンカー
 pjax
 
+barba
+GSAP
+locomotive-scroll
+Swiper
