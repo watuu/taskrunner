@@ -6,38 +6,15 @@ a {
 	color: $color;
 	text-decoration: none;
 	transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, box-shadow .3s ease-out ;
-	.alpha {
-		transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out ;
-	}
 	img {
 		transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, transform .3s ease-out ;
 	}
 	@media (hover: hover) {
 		&:hover {
-			.alpha {
-				opacity: 0.7;
-			}
 		}
 	}
 }
-.link-text {
-	a {
-		color: $link;
-	}
-	@media (hover: hover) {
-		a:hover {
-			text-decoration: underline;
-		}
-	}
-}
-a.link-text {
-	color: $link;
-	@media (hover: hover) {
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
+
 @media (hover: hover) {
 	a[href^='tel:'] {
 		pointer-events: none;
@@ -49,7 +26,7 @@ a.link-text {
 		-webkit-tap-highlight-color: transparent;
 	}
 }
-[data-scroll-target] {
+[anchor-target] {
 	content: '';
 	display: block;
 	position: relative;

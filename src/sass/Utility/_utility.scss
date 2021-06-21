@@ -24,9 +24,29 @@
 	text-indent: -2em;
 }
 
-.hide {
+@include pc {
+}
+@include sp-tab {
+}
+.u-hide {
 	display: none;
 }
-.break_line {
+.u-breakLine {
 	display: inline-block;
 }
+
+.u-only-sp {
+	display: block !important;
+	@include pc-tab {
+		display: none !important;
+	}
+}
+
+.u-only-pc {
+	display: none !important;
+	@include pc-tab {
+		display: block !important;
+	}
+}
+
+

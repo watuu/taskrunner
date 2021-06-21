@@ -125,55 +125,76 @@ article, main, aside, details, figcaption, figure, footer, header, hgroup, menu,
   display: block;
 }
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 1025px) {
   :root {
     --header-height: 120px;
   }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1024px) {
   :root {
     --header-height: 60px;
   }
 }
 
 /*----------------------------------------------------
-	レスポンシブ
+	フォーム
 ----------------------------------------------------*/
-@media screen and (min-width: 561px) {
-  .sp {
-    display: none;
-  }
+[hidden] {
+  display: none !important;
 }
 
-@media screen and (min-width: 961px) {
-  .sp-tab {
-    display: none;
-  }
+[disabled] {
+  cursor: not-allowed;
 }
 
-@media screen and (max-width: 960px) {
-  .pc {
-    display: none;
-  }
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
-@media screen and (max-width: 560px) {
-  .pc-tab {
-    display: none;
-  }
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 
-@media screen and (max-width: 560px) {
-  .tab {
-    display: none;
-  }
+input,
+select,
+label {
+  vertical-align: middle;
 }
 
-@media screen and (min-width: 961px) {
-  .tab {
-    display: none;
-  }
+[type="text"] {
+  line-height: normal;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+button {
+  -webkit-appearance: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: none;
+}
+
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  resize: none;
+}
+
+*:focus {
+  outline: none;
 }
 
 /*----------------------------------------------------
@@ -197,6 +218,45 @@ body {
 }
 
 /*----------------------------------------------------
+	レスポンシブ
+----------------------------------------------------*/
+@media screen and (min-width: 768px) {
+  .sp {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .sp-tab {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .pc {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .pc-tab {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tab {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .tab {
+    display: none;
+  }
+}
+
+/*----------------------------------------------------
 	リンク
 ----------------------------------------------------*/
 a {
@@ -205,40 +265,10 @@ a {
   transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, box-shadow .3s ease-out;
 }
 
-a .alpha {
-  transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out;
-}
-
 a img {
   transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, -webkit-transform .3s ease-out;
   transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, transform .3s ease-out;
   transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, transform .3s ease-out, -webkit-transform .3s ease-out;
-}
-
-@media (hover: hover) {
-  a:hover .alpha {
-    opacity: 0.7;
-  }
-}
-
-.link-text a {
-  color: #1DA1F2;
-}
-
-@media (hover: hover) {
-  .link-text a:hover {
-    text-decoration: underline;
-  }
-}
-
-a.link-text {
-  color: #1DA1F2;
-}
-
-@media (hover: hover) {
-  a.link-text:hover {
-    text-decoration: underline;
-  }
 }
 
 @media (hover: hover) {
@@ -254,7 +284,7 @@ a.link-text {
   }
 }
 
-[data-scroll-target] {
+[anchor-target] {
   display: block;
   position: relative;
   top: calc(-1 * var(--header-height));
@@ -275,13 +305,13 @@ a.link-text {
   padding-left: 40px;
 }
 
-@media screen and (min-width: 961px) and (max-width: 1366px) {
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
   .container {
     max-width: initial;
   }
 }
 
-@media screen and (min-width: 561px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
     max-width: initial;
     padding-right: 20px;
@@ -289,7 +319,7 @@ a.link-text {
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 767px) {
   .container {
     max-width: initial;
     padding-right: 20px;
@@ -344,7 +374,7 @@ body.no-scroll {
 /*----------------------------------------------------
 	ヘッダー メニュー
 ----------------------------------------------------*/
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1024px) {
   .header-menu {
     z-index: 2;
     position: absolute;
@@ -394,7 +424,7 @@ body.no-scroll {
 /*----------------------------------------------------
 	ヘッダーナビ
 ----------------------------------------------------*/
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 1025px) {
   .header-nav {
     margin-left: auto;
   }
@@ -465,7 +495,7 @@ header {
   }
 }
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 1025px) {
   .header-content__wrap {
     display: flex;
   }
@@ -479,6 +509,40 @@ header {
 ----------------------------------------------------*/
 footer {
   background-color: #eee;
+}
+
+/*----------------------------------------------------
+	legacy-browser
+----------------------------------------------------*/
+.legacy-browser {
+  display: flex;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.legacy-browser__body {
+  color: #000;
+  line-height: 2;
+  text-align: center;
+}
+
+.legacy-browser__body a {
+  color: #1DA1F2;
+}
+
+@supports (display: grid) {
+  .legacy-browser {
+    display: none;
+    z-index: -1;
+    pointer-events: none;
+  }
 }
 
 /*----------------------------------------------------
@@ -552,312 +616,6 @@ section:nth-of-type(odd) {
 /*----------------------------------------------------
 	xxx
 ----------------------------------------------------*/
-/*----------------------------------------------------
-	アニメーション
-----------------------------------------------------*/
-.fadeIn {
-  display: none;
-}
-
-.fadeIn.show {
-  -webkit-animation: fadeIn 0.6s linear;
-  display: block;
-          animation: fadeIn 0.6s linear;
-}
-
-.anime {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.anime.opacity {
-  opacity: 1;
-}
-
-.animated {
-  visibility: visible;
-}
-
-.fadeIn.animated {
-  -webkit-animation: fadeIn .5s forwards;
-          animation: fadeIn .5s forwards;
-}
-
-.fadeInUp.animated {
-  -webkit-animation: fadeInUp .5s forwards;
-          animation: fadeInUp .5s forwards;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeInUp {
-  from {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
-/*----------------------------------------------------
-	btn
-----------------------------------------------------*/
-.btnA {
-  cursor: pointer;
-}
-
-/*----------------------------------------------------
-	フォーム
-----------------------------------------------------*/
-input[type=submit] {
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-}
-
-button {
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-}
-
-button, input, select, textarea {
-  font-size: 100%;
-  font-family: inherit;
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-  position: relative;
-  top: -0.125em;
-  width: 0.875em;
-  height: 0.875em;
-  margin-right: 0.25em;
-}
-
-/*----------------------------------------------------
-	legacy-browser
-----------------------------------------------------*/
-.legacy-browser {
-  display: flex;
-  z-index: 9999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-}
-
-.legacy-browser__body {
-  color: #000;
-  line-height: 2;
-  text-align: center;
-}
-
-.legacy-browser__body a {
-  color: #1DA1F2;
-}
-
-@supports (display: grid) {
-  .legacy-browser {
-    display: none;
-    z-index: -1;
-    pointer-events: none;
-  }
-}
-
-/*----------------------------------------------------
-	ボタン
-----------------------------------------------------*/
-/*----------------------------------------------------
-	見出し
-----------------------------------------------------*/
-/*----------------------------------------------------
-	slick
-----------------------------------------------------*/
-/* Arrows */
-.slick-prev,
-.slick-next {
-  display: block;
-  z-index: 10;
-  position: absolute;
-  top: 50%;
-  width: 1rem;
-  height: 1rem;
-  padding: 0;
-  border: none;
-  border-top: 1px solid #000;
-  border-right: 1px solid #000;
-  outline: none;
-  background: transparent;
-  color: transparent;
-  font-size: 0;
-  line-height: 0;
-  cursor: pointer;
-}
-
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before {
-  opacity: .25;
-}
-
-.slick-prev {
-  -webkit-transform: translate(0, -50%) rotate(-135deg);
-  left: 1rem;
-          transform: translate(0, -50%) rotate(-135deg);
-}
-
-.slick-next {
-  -webkit-transform: translate(0, -50%) rotate(45deg);
-  right: 1rem;
-          transform: translate(0, -50%) rotate(45deg);
-}
-
-/* Dots */
-.slick-dots {
-  -webkit-transform: translate(-50%, -200%);
-  display: flex;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-          transform: translate(-50%, -200%);
-}
-
-.slick-dots li {
-  width: 16px;
-  height: 16px;
-  font-size: 0;
-}
-
-.slick-dots li:not(:last-child) {
-  margin-right: 16px;
-}
-
-.slick-dots li button {
-  display: block;
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 100%;
-  outline: none;
-  background-color: #fff;
-  font-size: 0;
-  line-height: 0;
-}
-
-.slick-dots li.slick-active button {
-  background-color: #ccc;
-}
-
-@media screen and (max-width: 960px) {
-  .slick-dots li {
-    width: 10px;
-    height: 10px;
-  }
-  .slick-dots li:not(:last-child) {
-    margin-right: 10px;
-  }
-  .slick-dots li button {
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-  }
-  .slick-dots li.slick-active button {
-    background-color: #ccc;
-  }
-}
-
-:root {
-  /*
-  --swiper-pagination-color: var(--swiper-theme-color);
-  */
-}
-
-/* Common Styles */
-/* Bullets */
-/* Progress */
-/*----------------------------------------------------
-	title
-----------------------------------------------------*/
-.titleA {
-  cursor: pointer;
-}
-
-/*----------------------------------------------------
-	汎用クラス
-----------------------------------------------------*/
-.bold,
-.strong {
-  font-weight: bold;
-}
-
-.center {
-  text-align: center;
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  text-align: right;
-}
-
-.indent {
-  padding-left: 1em;
-  text-indent: -1em;
-}
-
-.indent--2 {
-  padding-left: 2em;
-  text-indent: -2em;
-}
-
-.hide {
-  display: none;
-}
-
-.break_line {
-  display: inline-block;
-}
-
 /*----------------------------------------------------
 	widget-editor
 ----------------------------------------------------*/
@@ -950,8 +708,261 @@ input[type="checkbox"] {
   text-decoration: none;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 767px) {
   .widget-editor {
     font-size: 14px;
+  }
+}
+
+/*----------------------------------------------------
+	btn
+----------------------------------------------------*/
+.btnA {
+  cursor: pointer;
+}
+
+/*----------------------------------------------------
+	見出し
+----------------------------------------------------*/
+/*----------------------------------------------------
+	アニメーション
+----------------------------------------------------*/
+.fadeIn {
+  display: none;
+}
+
+.fadeIn.show {
+  -webkit-animation: fadeIn 0.6s linear;
+  display: block;
+          animation: fadeIn 0.6s linear;
+}
+
+.anime {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.anime.opacity {
+  opacity: 1;
+}
+
+.animated {
+  visibility: visible;
+}
+
+.fadeIn.animated {
+  -webkit-animation: fadeIn .5s forwards;
+          animation: fadeIn .5s forwards;
+}
+
+.fadeInUp.animated {
+  -webkit-animation: fadeInUp .5s forwards;
+          animation: fadeInUp .5s forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/*----------------------------------------------------
+	slick
+----------------------------------------------------*/
+/* Arrows */
+.slick-prev,
+.slick-next {
+  display: block;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  border: none;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: .25;
+}
+
+.slick-prev {
+  -webkit-transform: translate(0, -50%) rotate(-135deg);
+  left: 1rem;
+          transform: translate(0, -50%) rotate(-135deg);
+}
+
+.slick-next {
+  -webkit-transform: translate(0, -50%) rotate(45deg);
+  right: 1rem;
+          transform: translate(0, -50%) rotate(45deg);
+}
+
+/* Dots */
+.slick-dots {
+  -webkit-transform: translate(-50%, -200%);
+  display: flex;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+          transform: translate(-50%, -200%);
+}
+
+.slick-dots li {
+  width: 16px;
+  height: 16px;
+  font-size: 0;
+}
+
+.slick-dots li:not(:last-child) {
+  margin-right: 16px;
+}
+
+.slick-dots li button {
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 100%;
+  outline: none;
+  background-color: #fff;
+  font-size: 0;
+  line-height: 0;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #ccc;
+}
+
+@media screen and (max-width: 1024px) {
+  .slick-dots li {
+    width: 10px;
+    height: 10px;
+  }
+  .slick-dots li:not(:last-child) {
+    margin-right: 10px;
+  }
+  .slick-dots li button {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+  }
+  .slick-dots li.slick-active button {
+    background-color: #ccc;
+  }
+}
+
+:root {
+  /*
+  --swiper-pagination-color: var(--swiper-theme-color);
+  */
+}
+
+/* Common Styles */
+/* Bullets */
+/* Progress */
+/*----------------------------------------------------
+	汎用クラス
+----------------------------------------------------*/
+.bold,
+.strong {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.indent {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.indent--2 {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+.u-hide {
+  display: none;
+}
+
+.u-breakLine {
+  display: inline-block;
+}
+
+.u-only-sp {
+  display: block !important;
+}
+
+@media screen and (min-width: 768px) {
+  .u-only-sp {
+    display: none !important;
+  }
+}
+
+.u-only-pc {
+  display: none !important;
+}
+
+@media screen and (min-width: 768px) {
+  .u-only-pc {
+    display: block !important;
   }
 }
