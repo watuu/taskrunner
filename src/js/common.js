@@ -13,13 +13,13 @@ export default class common {
     }
 
     isSP() {
-        return window.matchMedia('screen and (min-width: 375px) and (max-width: 560px)').matches
+        return window.matchMedia('screen and (min-width: 320px) and (max-width: 767px)').matches
     }
     isTAB() {
-        return window.matchMedia('screen and (min-width: 561px) and (max-width: 960px)').matches
+        return window.matchMedia('screen and (min-width: 768px) and (max-width: 1024px)').matches
     }
     isPC() {
-        return window.matchMedia('screen and (min-width: 961px)').matches
+        return window.matchMedia('screen and (min-width: 1025px)').matches
     }
 
     load() {
@@ -45,11 +45,26 @@ export default class common {
      * ローディング処理
      */
     loader() {
-        (function(){
-            setTimeout(function(){
-                $('body').addClass('loadedLower');
-            },500);
-        })();
+        // vars
+        var loadedClass = 'loadedLower';
+        var classNameScroll = 'is-scrolled';
+        var marginScrolled = 300;
+
+        // functions
+        // ロードクラス付与
+        setTimeout(function(){
+            $('body').addClass(loadedClass);
+        },500);
+
+        // スクロール判定
+        $(window).on('scroll resize orientationchange', function(){
+            let margin = marginScrolled;
+            if ($(this).scrollTop() > margin) {
+                $('body').addClass(classNameScroll);
+            } else if ($(this).scrollTop() <= margin) {
+                $('body').removeClass(classNameScroll);
+            }
+        });
     }
 
     /*
@@ -92,51 +107,38 @@ export default class common {
     globalMenu() {
 
         // vars
-        let classNameScroll = 'scrolled';
-        let marginScrolled = 300;
-        let $headerMenu = $('.header-menu');
-        let $headerNav = $('.header-nav');
-        let $asideNav = $('.aside-nav');
+        let classNameNavOpen = 'is-nav-open';
+        let classNameNavClose = 'is-nav-closing';
+        let $header = $('.l-header');
+        let $headerMenu = $('.l-header__menu');
+        let $headerNav = $('.l-header__nav');
 
         // functions
-        // スクロール判定
-        $(window).on('scroll resize orientationchange', function(){
-            let margin = marginScrolled;
-            if ($(this).scrollTop() > margin) {
-                $('body').addClass(classNameScroll);
-            } else if ($(this).scrollTop() <= margin) {
-                $('body').removeClass(classNameScroll);
-            }
-        });
-
         // ハンバーガーメニュー
         $headerMenu.on('click', function() {
             setNavHeight();
-            $headerMenu.toggleClass('open');
-            if ($headerMenu.hasClass('open')) {
-                $headerNav.addClass('open');
+            $headerMenu.toggleClass(classNameNavOpen);
+            if ($headerMenu.hasClass(classNameNavOpen)) {
+                $header.addClass(classNameNavOpen);
                 $('body').addClass('no-scroll');
             } else {
-                $headerNav.removeClass('open').addClass('closing');
+                $header.removeClass(classNameNavOpen).addClass(classNameNavClose);
                 $('body').removeClass('no-scroll');
                 setTimeout(function(){
-                    $headerNav.removeClass('closing');
-                },2000);
+                    $header.removeClass(classNameNavClose);
+                },1000);
             }
         });
-        $headerNav.find('a').on('click', function() {
-            $headerMenu.removeClass('open');
-            $headerNav.removeClass('open').addClass('closing');
+        $header.find('a').on('click', function() {
+            $headerMenu.removeClass(classNameNavOpen);
+            $header.removeClass(classNameNavOpen).addClass(classNameNavClose);
             $('body').removeClass('no-scroll');
             setTimeout(function(){
-                $headerNav.removeClass('closing');
-            },2000);
+                $header.removeClass(classNameNavClose);
+            },1000);
         });
         function setNavHeight() {
-            $headerNav.css('height', (window.innerHeight - $('header').height()) + 'px');
-        }
-        function setModalHeight() {
-            $asideNav.css('height', (window.innerHeight - $('header').height()) + 'px');
+            $headerNav.css('height', (window.innerHeight) + 'px');
         }
     }
 
