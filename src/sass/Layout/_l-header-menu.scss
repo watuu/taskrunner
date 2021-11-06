@@ -2,7 +2,7 @@
 /*----------------------------------------------------
 	ヘッダー メニュー
 ----------------------------------------------------*/
-.header-menu {
+.l-header-menu {
 	@include sp-tab {
 		position: absolute;
 		right: 0;
@@ -32,7 +32,7 @@
 		span:nth-child(3) {
 			top: 36px;
 		}
-		&.open {
+		&.is-nav-open {
 			span:nth-child(1) {
 				top: 28px;
 				transform: rotate(45deg);

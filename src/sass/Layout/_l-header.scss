@@ -2,7 +2,7 @@
 /*----------------------------------------------------
 	ヘッダー
 ----------------------------------------------------*/
-header {
+.l-header {
 	width: 100%;
 	height: var(--header-height);
 	position: fixed;
@@ -37,7 +37,7 @@ header {
 		transform: translateY(0);
 	}
 }
-.header-content__wrap {
+.l-header-content__wrap {
 	@include pc {
 		display: flex;
 	}

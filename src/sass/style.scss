@@ -6,11 +6,11 @@
 @import "Base/font";
 @import "Base/responsive";
 @import "Base/anchor";
-@import "Layout/container";
-@import "Layout/body";
-@import "Layout/_header*";
-@import "Layout/_main*";
-@import "Layout/_footer*";
+@import "Layout/_l-container";
+@import "Layout/_l-body*";
+@import "Layout/_l-header*";
+@import "Layout/_l-main*";
+@import "Layout/_l-footer*";
 @import "PageBlock/**";
 @import "Module/**";
 @import "Component/**";

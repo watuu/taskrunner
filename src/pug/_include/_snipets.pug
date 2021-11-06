@@ -7,17 +7,17 @@
 li(class=pageClass =="company" ? "current": "")
 
 //- svg
-svg(width=22 height=18)
+svg(width=22 height=22)
     title title
-    use(href="#ico_arrow_r")
+    use(href="#ico")
 
 //- picture
 picture
-    source(srcset=img+"" media="(min-width: 800px)")
+    source(srcset=img+"" media="(max-width: 767px)")
     img(src=img+"" loading="lazy" width="" height="")
 
 //- slide
-.slide-content
+.swiper-container
     .swiper-wrapper
         .swiper-slide.slide-w1280
             img(src='http://placehold.jp/666666/ffffff/1280x600.png' alt='' width=1280 height=600)

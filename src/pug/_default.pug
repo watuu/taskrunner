@@ -12,7 +12,6 @@ head
     else
         title #{sitename}
     meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
     //-
         meta(name="description", content="")
         meta(name="keywords", content="")
@@ -36,8 +35,8 @@ head
 body#body(class=pageClass)
     = "\n"
     a#top
-    .body-wrap
-        header
+    .l-body-wrap
+        header.l-header
             .header-content
                 .header-content__wrap
                     p.header-logo
@@ -61,9 +60,9 @@ body#body(class=pageClass)
                             span
 
         div(data-scroll-container)
-            main#main
+            main.l-main#main
                 block content
-            footer
+            footer.l-footer
                 .footer-content
                     p footer
             .mask

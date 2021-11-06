@@ -1,19 +1,10 @@
 
 /*----------------------------------------------------
-	ヘッダーナビ
+	main
 ----------------------------------------------------*/
-.header-nav {
+.l-main {
 	@include pc {
-		margin-left: auto;
-		ul {
-			display: flex;
-		}
-		li + li {
-			margin-left: 10px;
-		}
 	}
 	@include sp-tab {
 	}
 }
-
-

@@ -1,6 +1,7 @@
 import objectFitImages from 'object-fit-images';
 import Top from "./top";
-import cssVars from 'css-vars-ponyfill';
+import $ from "jquery";
+// import $ from 'jQuery';
 
 /*
  * common
@@ -32,7 +33,6 @@ export default class common {
         }
         if (constants.enabled_legacy_browser) {
             objectFitImages();
-            cssVars();
         }
     }
 
@@ -110,8 +110,8 @@ export default class common {
         let classNameNavOpen = 'is-nav-open';
         let classNameNavClose = 'is-nav-closing';
         let $header = $('.l-header');
-        let $headerMenu = $('.l-header__menu');
-        let $headerNav = $('.l-header__nav');
+        let $headerMenu = $('.l-header-menu');
+        let $headerNav = $('.l-header-nav');
 
         // functions
         // ハンバーガーメニュー
@@ -119,22 +119,19 @@ export default class common {
             setNavHeight();
             $headerMenu.toggleClass(classNameNavOpen);
             if ($headerMenu.hasClass(classNameNavOpen)) {
-                $header.addClass(classNameNavOpen);
-                $('body').addClass('no-scroll');
+                $('body').addClass('no-scroll').addClass(classNameNavOpen);
             } else {
-                $header.removeClass(classNameNavOpen).addClass(classNameNavClose);
-                $('body').removeClass('no-scroll');
+                $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
                 setTimeout(function(){
-                    $header.removeClass(classNameNavClose);
+                    $('body').removeClass(classNameNavClose);
                 },1000);
             }
         });
         $header.find('a').on('click', function() {
             $headerMenu.removeClass(classNameNavOpen);
-            $header.removeClass(classNameNavOpen).addClass(classNameNavClose);
-            $('body').removeClass('no-scroll');
+            $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
             setTimeout(function(){
-                $header.removeClass(classNameNavClose);
+                $('body').removeClass(classNameNavClose);
             },1000);
         });
         function setNavHeight() {

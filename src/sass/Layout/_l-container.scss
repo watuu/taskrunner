@@ -2,9 +2,9 @@
 /*----------------------------------------------------
 	コンテナ
 ----------------------------------------------------*/
-.container {
+.l-container {
 	@include container;
 }
-.container--l {
+.l-container--l {
 	max-width: ($container-width-L + 80px);
 }
