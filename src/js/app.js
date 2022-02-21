@@ -7,8 +7,8 @@ import Top from './top';
 import Barba from './barba';
 
 let common = new Common();
-new Top();
 common.load();
+new Top();
 new Barba();
 
 

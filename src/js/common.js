@@ -184,21 +184,21 @@ export default class common {
      */
     setDeviceClassToBody() {
         $(window).on('load resize orientationchange', () => {
-
+            const body = document.querySelector('body');
             if (this.isSP()) {
-                $('body').addClass('isSP');
+                body.classList.add('isSP');
             } else {
-                $('body').removeClass('isSP');
+                body.classList.remove('isSP');
             }
             if (this.isTAB()) {
-                $('body').addClass('isTAB');
+                body.classList.add('isTAB');
             } else {
-                $('body').removeClass('isTAB');
+                body.classList.remove('isTAB');
             }
             if (this.isPC()) {
-                $('body').addClass('isPC');
+                body.classList.add('isPC');
             } else {
-                $('body').removeClass('isPC');
+                body.classList.remove('isPC');
             }
 
         });

@@ -47,6 +47,14 @@ export default class Gsap {
             });
         });
 
+        $('[data-trigger]').each(function(){
+            ScrollTrigger.create({
+                trigger: this,
+                toggleClass: 'visible',
+                once: true,
+            })
+        });
+
     }
 
     top() {

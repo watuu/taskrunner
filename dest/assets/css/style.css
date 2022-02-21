@@ -295,7 +295,7 @@ a img {
 /*----------------------------------------------------
 	コンテナ
 ----------------------------------------------------*/
-.container {
+.l-container {
   position: relative;
   width: 100%;
   max-width: 1280px;
@@ -306,13 +306,13 @@ a img {
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1366px) {
-  .container {
+  .l-container {
     max-width: initial;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .container {
+  .l-container {
     max-width: initial;
     padding-right: 20px;
     padding-left: 20px;
@@ -320,14 +320,14 @@ a img {
 }
 
 @media screen and (max-width: 767px) {
-  .container {
+  .l-container {
     max-width: initial;
     padding-right: 20px;
     padding-left: 20px;
   }
 }
 
-.container--l {
+.l-container--l {
   max-width: 1420px;
 }
 
@@ -365,7 +365,7 @@ body.no-scroll {
   }
 }
 
-.body-wrap {
+.l-body-wrap {
   width: 100%;
   min-height: 100%;
   overflow: hidden;
@@ -375,7 +375,7 @@ body.no-scroll {
 	ヘッダー メニュー
 ----------------------------------------------------*/
 @media screen and (max-width: 1024px) {
-  .header-menu {
+  .l-header-menu {
     z-index: 2;
     position: absolute;
     top: 0px;
@@ -384,10 +384,10 @@ body.no-scroll {
     height: 60px;
     cursor: pointer;
   }
-  .header-menu div {
+  .l-header-menu div {
     position: relative;
   }
-  .header-menu span {
+  .l-header-menu span {
     display: block;
     position: absolute;
     left: 18px;
@@ -396,25 +396,25 @@ body.no-scroll {
     background: #005bac;
     transition: .35s ease-in-out;
   }
-  .header-menu span:nth-child(1) {
+  .l-header-menu span:nth-child(1) {
     top: 20px;
   }
-  .header-menu span:nth-child(2) {
+  .l-header-menu span:nth-child(2) {
     top: 28px;
   }
-  .header-menu span:nth-child(3) {
+  .l-header-menu span:nth-child(3) {
     top: 36px;
   }
-  .header-menu.open span:nth-child(1) {
+  .l-header-menu.is-nav-open span:nth-child(1) {
     -webkit-transform: rotate(45deg);
     top: 28px;
             transform: rotate(45deg);
   }
-  .header-menu.open span:nth-child(2) {
+  .l-header-menu.is-nav-open span:nth-child(2) {
     left: 50%;
     width: 0;
   }
-  .header-menu.open span:nth-child(3) {
+  .l-header-menu.is-nav-open span:nth-child(3) {
     -webkit-transform: rotate(-45deg);
     top: 28px;
             transform: rotate(-45deg);
@@ -425,13 +425,13 @@ body.no-scroll {
 	ヘッダーナビ
 ----------------------------------------------------*/
 @media screen and (min-width: 1025px) {
-  .header-nav {
+  .l-header-nav {
     margin-left: auto;
   }
-  .header-nav ul {
+  .l-header-nav ul {
     display: flex;
   }
-  .header-nav li + li {
+  .l-header-nav li + li {
     margin-left: 10px;
   }
 }
@@ -439,7 +439,7 @@ body.no-scroll {
 /*----------------------------------------------------
 	ヘッダー
 ----------------------------------------------------*/
-header {
+.l-header {
   -webkit-transform: translateY(0);
   z-index: 9999;
   position: fixed;
@@ -496,7 +496,7 @@ header {
 }
 
 @media screen and (min-width: 1025px) {
-  .header-content__wrap {
+  .l-header-content__wrap {
     display: flex;
   }
 }
@@ -507,7 +507,7 @@ header {
 /*----------------------------------------------------
 	フッター
 ----------------------------------------------------*/
-footer {
+.l-footer {
   background-color: #eee;
 }
 
@@ -724,86 +724,6 @@ section:nth-of-type(odd) {
 /*----------------------------------------------------
 	見出し
 ----------------------------------------------------*/
-/*----------------------------------------------------
-	アニメーション
-----------------------------------------------------*/
-.fadeIn {
-  display: none;
-}
-
-.fadeIn.show {
-  -webkit-animation: fadeIn 0.6s linear;
-  display: block;
-          animation: fadeIn 0.6s linear;
-}
-
-.anime {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.anime.opacity {
-  opacity: 1;
-}
-
-.animated {
-  visibility: visible;
-}
-
-.fadeIn.animated {
-  -webkit-animation: fadeIn .5s forwards;
-          animation: fadeIn .5s forwards;
-}
-
-.fadeInUp.animated {
-  -webkit-animation: fadeInUp .5s forwards;
-          animation: fadeInUp .5s forwards;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeInUp {
-  from {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
 /*----------------------------------------------------
 	slick
 ----------------------------------------------------*/

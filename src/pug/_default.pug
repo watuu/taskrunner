@@ -37,33 +37,31 @@ body#body(class=pageClass)
     a#top
     .l-body-wrap
         header.l-header
-            .header-content
-                .header-content__wrap
-                    p.header-logo
-                        a(href="./") logo
-                    nav.header-nav
-                        ul
-                            li
-                                a(href="./") HOME
-                            li
-                                a(href="./#sec1" data-scroll-anchor) SECTION1
-                            li
-                                a(href="./#sec2" data-scroll-anchor) SECTION2
-                            li
-                                a(href="./#sec3" data-scroll-anchor) SECTION3
-                            li
-                                a(href="./test.html") TEST
-                    .header-menu
-                        div
-                            span
-                            span
-                            span
+            p.l-header-logo
+                a(href="./") logo
+            nav.l-header-nav
+                ul
+                    li
+                        a(href="./") HOME
+                    li
+                        a(href="./#sec1" data-scroll-anchor) SECTION1
+                    li
+                        a(href="./#sec2" data-scroll-anchor) SECTION2
+                    li
+                        a(href="./#sec3" data-scroll-anchor) SECTION3
+                    li
+                        a(href="./test.html") TEST
+            .l-header-menu
+                div
+                    span
+                    span
+                    span
 
         div(data-scroll-container)
             main.l-main#main
                 block content
             footer.l-footer
-                .footer-content
+                .l-footer-content
                     p footer
             .mask
         .legacy-browser

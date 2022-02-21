@@ -1,14 +1,9 @@
 
 /*----------------------------------------------------
-	btn
+	...
 ----------------------------------------------------*/
-.btnA {
-	cursor: pointer;
-	@media (hover:hover) {
-	}
-}
 
-@include pc {
+@include pc-tab {
 }
-@include sp-tab {
+@include sp {
 }
