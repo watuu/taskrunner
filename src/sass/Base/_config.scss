@@ -12,21 +12,37 @@ $serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "H
 // $sans: "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 // $serif: YakuHanMP, "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;;
 
-$easeA: cubic-bezier(.1,.05,.2,1); // ease-out
-$easeB: cubic-bezier(.5,0,.2,1); // ease-in-out
-$ease: cubic-bezier(0.25, 0.1, 0.25, 1.0);
-$easeOut: cubic-bezier(0.0, 0.0, 0.58, 1.0);
-$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-$easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
 
-$breakpointSP: 767px;
-$breakpointTAB: 1024px;
-$breakpointLAP: 1366px;
+$easeInSine: cubic-bezier(0.12, 0, 0.39, 0);
+$easeOutSine: cubic-bezier(0.61, 1, 0.88, 1);
+$easeInOutSine: cubic-bezier(0.37, 0, 0.63, 1);
+
+$easeInCubic: cubic-bezier(0.32, 0, 0.67, 0);
+$easeOutCubic: cubic-bezier(0.33, 1, 0.68, 1);
+$easeInOutCubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+$easeInExpo: cubic-bezier(0.7, 0, 0.84, 0);
+$easeOutExpo: cubic-bezier(0.16, 1, 0.3, 1);
+$easeInOutExpo: cubic-bezier(0.87, 0, 0.13, 1);
+
+$easeInBack: cubic-bezier(0.36, 0, 0.66, -0.56);
+$easeOutBack: cubic-bezier(0.34, 1.56, 0.64, 1);
+$easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+// モバイルファースト
+$breakpoints: (
+	sm: 640px,
+	md: 960px,
+	lg: 1280px,
+);
+$container-padding: (
+	sm: (20/375*100vw),
+	md: (40/375*100vw),
+	lg: (80/1440*100vw),
+);
 
 // コンテンツの最大幅
 $container-width : 1200px;
-$container-width-L : 1340px;
 
 // アンカーのマージン
 //$scroll-margin-top: 60px;
@@ -39,64 +55,60 @@ $container-width-L : 1340px;
 	position: relative;
 	margin-left: auto; margin-right: auto;
 	width: 100%;
-	padding-left: 40px;
-	padding-right: 40px;
 	max-width: ($container-width + 80px);
-	@include lap{
-		max-width:initial;
+	@include sp{
+		padding-left: map-get($container-padding, 'sm');
+		padding-right: map-get($container-padding, 'sm');
 	}
 	@include tab{
-		max-width:initial;
-		padding-left: 20px;
-		padding-right: 20px;
+		padding-left: map-get($container-padding, 'md');
+		padding-right: map-get($container-padding, 'md');
 	}
-	@include sp{
-		max-width:initial;
-		padding-left: 20px;
-		padding-right: 20px;
+	@include pc{
+		padding-left: map-get($container-padding, 'lg');
+		padding-right: map-get($container-padding, 'lg');
 	}
 }
 
 // ===================================================================
 // mixin responsive
-// sp--[1]--tab--[2]--lap--[3]--dsk
+// sp--[1]--tab--[2]--lap--[3]--wide
 //                      pc        pc
 // ===================================================================
 
 @mixin sp {
-	@media screen and (max-width: ($breakpointSP) ){@content;}
+	@media screen and (max-width: (map-get($breakpoints, 'sm')) ){@content;}
 }
 @mixin sp-tab {
-	@media screen and (max-width: ($breakpointTAB) ){@content;}
+	@media screen and (max-width: (map-get($breakpoints, 'md')) ){@content;}
 }
 @mixin sp-lap {
-	@media screen and (max-width: ($breakpointLAP) ){@content;}
+	@media screen and (max-width: (map-get($breakpoints, 'lg')) ){@content;}
 }
 
-@mixin tab{
-	@media screen and (min-width: ($breakpointSP + 1) ) and (max-width: ($breakpointTAB ) ){@content;}
+@mixin tab {
+	@media screen and (min-width: (map-get($breakpoints, 'sm') + 1) ) and (max-width: (map-get($breakpoints, 'md') ) ){@content;}
 }
-@mixin tab-lap{
-	@media screen and (min-width: ($breakpointSP + 1) ) and (max-width: ($breakpointLAP ) ){@content;}
+@mixin tab-lap {
+	@media screen and (min-width: (map-get($breakpoints, 'sm') + 1) ) and (max-width: (map-get($breakpoints, 'lg') ) ){@content;}
 }
-@mixin tab-dsk{
-	// PCと同じ
-	@media screen and (min-width: ($breakpointSP + 1) ){@content;}
-}
-
-@mixin lap{
-	@media screen and (min-width: ($breakpointTAB + 1) ) and (max-width: ($breakpointLAP ) ){@content;}
+@mixin tab-pc {
+	@media screen and (min-width: (map-get($breakpoints, 'sm') + 1) ){@content;}
 }
 
-@mixin dsk {
-	@media screen and (min-width: ($breakpointLAP + 1) ){@content;}
+@mixin lap {
+	@media screen and (min-width: (map-get($breakpoints, 'md') + 1) ) and (max-width: (map-get($breakpoints, 'lg') ) ){@content;}
 }
 
 @mixin pc {
-	@media screen and (min-width: ($breakpointTAB + 1) ){@content;}
+	@media screen and (min-width: (map-get($breakpoints, 'md') + 1) ){@content;}
 }
 @mixin pc-tab {
-	@media screen and (min-width: ($breakpointSP + 1) ){@content;}
+	@media screen and (min-width: (map-get($breakpoints, 'sm') + 1) ){@content;}
+}
+
+@mixin wide {
+	@media screen and (min-width: (map-get($breakpoints, 'lg') + 1) ){@content;}
 }
 
 // ===================================================================

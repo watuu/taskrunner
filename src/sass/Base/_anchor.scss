@@ -5,9 +5,9 @@
 a {
 	color: $color;
 	text-decoration: none;
-	transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, box-shadow .3s ease-out ;
+	transition: color .3s $easeInOutSine, background .3s $easeInOutSine, border .3s $easeInOutSine, box-shadow .3s $easeInOutSine ;
 	img {
-		transition: color .3s ease-out, background .3s ease-out, border .3s ease-out, opacity .3s ease-out, box-shadow .3s ease-out, transform .3s ease-out ;
+		transition: color .3s $easeInOutSine, background .3s $easeInOutSine, border .3s $easeInOutSine, opacity .3s $easeInOutSine, box-shadow .3s $easeInOutSine, transform .3s $easeInOutSine ;
 	}
 	@media (hover: hover) {
 		&:hover {

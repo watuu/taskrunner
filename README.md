@@ -1,6 +1,10 @@
 # Webサイト制作用タスクランナー
 
 ## Version
+
+### 2022.01.xx
+- ブレイクポイントの調整
+
 ### 2021.01.xx
 - タスクランナーをGulpからnpm scriptsに変更
 - node-sassをdart-sassに変更予定
@@ -19,6 +23,7 @@
 - - gsap
 - - jquery-jpostal-ja
 - - slick-carousel
+- 
 ```bash
 npm install
 ```

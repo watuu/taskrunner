@@ -5,6 +5,3 @@
 .l-container {
 	@include container;
 }
-.l-container--l {
-	max-width: ($container-width-L + 80px);
-}

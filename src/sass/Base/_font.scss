@@ -5,7 +5,7 @@
 html {
 	font-size: 16px;
 	@include sp {
-		// font-size: (32/640*100vw);
+		font-size: (16/375*100vw);
 	}
 }
 body {

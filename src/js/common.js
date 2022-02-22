@@ -1,7 +1,6 @@
 import objectFitImages from 'object-fit-images';
 import Top from "./top";
-import $ from "jquery";
-// import $ from 'jQuery';
+// import $ from "jquery";
 
 /*
  * common
@@ -14,13 +13,13 @@ export default class common {
     }
 
     isSP() {
-        return window.matchMedia('screen and (min-width: 320px) and (max-width: 767px)').matches
+        return window.matchMedia('screen and (min-width: 320px) and (max-width: 640px)').matches
     }
     isTAB() {
-        return window.matchMedia('screen and (min-width: 768px) and (max-width: 1024px)').matches
+        return window.matchMedia('screen and (min-width: 641px) and (max-width: 960px)').matches
     }
     isPC() {
-        return window.matchMedia('screen and (min-width: 1025px)').matches
+        return window.matchMedia('screen and (min-width: 961px)').matches
     }
 
     load() {
@@ -28,9 +27,8 @@ export default class common {
         this.scrollEvent();
         this.setDeviceClassToBody();
         this.globalMenu();
-        if (!constants.is_locomotive) {
-            this.smoothScroll();
-        }
+        this.smoothScroll();
+        new Top();
         if (constants.enabled_legacy_browser) {
             objectFitImages();
         }
