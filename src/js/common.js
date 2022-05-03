@@ -1,6 +1,10 @@
 import objectFitImages from 'object-fit-images';
+// import barba from '@barba/core';
 import Top from "./top";
-// import $ from "jquery";
+import $ from "jQuery";
+import Utility from './utility';
+import {gsap, Power2, Power3} from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 /*
  * common
@@ -9,17 +13,16 @@ import Top from "./top";
 export default class common {
 
     constructor() {
-        this.global = 'global';
-    }
-
-    isSP() {
-        return window.matchMedia('screen and (min-width: 320px) and (max-width: 640px)').matches
-    }
-    isTAB() {
-        return window.matchMedia('screen and (min-width: 641px) and (max-width: 960px)').matches
-    }
-    isPC() {
-        return window.matchMedia('screen and (min-width: 961px)').matches
+        gsap.registerPlugin(ScrollTrigger);
+        this.load();
+        // barba.hooks.beforeOnce((data) => {
+        //     console.log('once')
+        //     this.load();
+        // })
+        // barba.hooks.after((data) => {
+        //     console.log('after')
+        //     this.load();
+        // });
     }
 
     load() {
@@ -28,14 +31,14 @@ export default class common {
         this.setDeviceClassToBody();
         this.globalMenu();
         this.smoothScroll();
-        new Top();
+        this.isVisible();
+        this.isVisibleType();
         if (constants.enabled_legacy_browser) {
             objectFitImages();
         }
     }
 
     reload() {
-        new Top();
     }
 
     /*
@@ -109,7 +112,7 @@ export default class common {
         let classNameNavClose = 'is-nav-closing';
         let $header = $('.l-header');
         let $headerMenu = $('.l-header-menu');
-        let $headerNav = $('.l-header-nav');
+        let $headerNav = $('.l-header-drawer');
 
         // functions
         // ハンバーガーメニュー
@@ -133,8 +136,18 @@ export default class common {
             },1000);
         });
         function setNavHeight() {
-            $headerNav.css('height', (window.innerHeight) + 'px');
+            $headerNav.css('height', (window.innerHeight - $header.height()) + 'px');
         }
+
+        $(window).keydown(function(event) {
+            if (event.keyCode == 27) {
+                $headerMenu.removeClass(classNameNavOpen);
+                $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
+                setTimeout(function(){
+                    $('body').removeClass(classNameNavClose);
+                },1000);
+            }
+        });
     }
 
     /*
@@ -176,24 +189,63 @@ export default class common {
         });
     }
 
-    /*
+    isVisible() {
+        const dom = '.js-visible'
+
+        $(dom).each(function(){
+            ScrollTrigger.create({
+                trigger: this,
+                toggleClass: 'is-visible',
+                start: 'top bottom-=20%',
+                once: true,
+            })
+        });
+    }
+
+    isVisibleType() {
+        const domList = document.querySelectorAll('.js-visible-type');
+
+        if (domList.length) {
+            for (let i = 0; i < domList.length; i++) {
+                Utility.convertSpiltSpan(domList[i])
+            }
+            const txtList = '.js-visible-type';
+            $(txtList).each(function(){
+                let txt = $(this).find('span');
+                gsap.set(txt, {opacity: 0, y: '20%'})
+                gsap.to(txt, {
+                    scrollTrigger: {
+                        trigger: this,
+                        start: 'top bottom-=20%',
+                    },
+                    delay: 0.5,
+                    opacity: 1,
+                    y: '0%',
+                    stagger: 0.03,
+                    ease: Power3.easeOut,
+                });
+            })
+        }
+    }
+
+    /*globalMenu
      * setDeviceClassToBody
      * デバイスサイズによるクラス付
      */
     setDeviceClassToBody() {
         $(window).on('load resize orientationchange', () => {
             const body = document.querySelector('body');
-            if (this.isSP()) {
+            if (Utility.isSP()) {
                 body.classList.add('isSP');
             } else {
                 body.classList.remove('isSP');
             }
-            if (this.isTAB()) {
+            if (Utility.isTAB()) {
                 body.classList.add('isTAB');
             } else {
                 body.classList.remove('isTAB');
             }
-            if (this.isPC()) {
+            if (Utility.isPC()) {
                 body.classList.add('isPC');
             } else {
                 body.classList.remove('isPC');

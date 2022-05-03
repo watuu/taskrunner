@@ -13,8 +13,14 @@ svg(width=22 height=22)
 
 //- picture
 picture
-    source(srcset=img+"" media="(max-width: 767px)")
-    img(src=img+"" loading="lazy" width="" height="")
+    source(srcset=img + "" media="(max-width: 960px)")
+    img(src=img + "" loading="lazy")
+
+picture
+    source(type="image/webp" srcset=img + "" media="(max-width: 960px)")
+    source(type="image/webp" srcset=img + "" media="(min-width: 961px)")
+    source(srcset=img+"" media="(max-width: 960px)")
+    img(src=img+"")
 
 //- slide
 .swiper-container

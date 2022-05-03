@@ -1,9 +1,13 @@
 window.constants = {
-    is_locomotive: false,
     enabled_legacy_browser: false,
 }
 import {default as Common} from './common';
+// import Barba from './barba';
+import Top from './top';
+import BudouX from './budoux';
 
-let common = new Common();
+const common = new Common();
 common.load();
-
+// new Barba();
+new Top();
+new BudouX();

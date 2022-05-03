@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
  * https://greensock.com/cheatsheet/
  * https://gist.github.com/lunelson/7d83ca0c8bdfab170dd3
  * https://greensock.com/docs/v2/Easing
+ * https://greensock.com/st-demos/page/2/?d=19
  */
 export default class Gsap {
     constructor() {

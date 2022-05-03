@@ -1,9 +1,11 @@
 import {default as Common} from './common';
-// import Swiper from 'swiper/bundle';
-// import 'swiper/swiper-bundle.css';
-import Swiper from 'swiper';
-import 'swiper/css/swiper.min.css';
-// import $ from 'jQuery';
+// ver6
+import Swiper from 'swiper/bundle';
+import 'swiper/swiper-bundle.css';
+// ver7
+// import Swiper, { Navigation, Paginatio, Autoplay, EffectCreative, FreeMode } from 'swiper';
+// import 'swiper/css/bundle'
+// Swiper.use([Navigation, Paginatio, Autoplay, EffectCreative, FreeMode]);
 
 /*
  * Swiper slider
@@ -23,7 +25,7 @@ export default class sliderSwiper {
         let elem_container = '.p-top-mv__slide .swiper-container';
 
         // functions
-        let mySwiper1 = new Swiper (elem_container, {
+        let mySwiper = new Swiper (elem_container, {
             loop: true,
             slidesPerView: 1,
             spaceBetween: 0,
@@ -80,6 +82,9 @@ export default class sliderSwiper {
             thumbs: {
                 swiper: mySwiperThumb,
             },
+        });
+        $(window).on('resize orientationchange', function(){
+            mySwiper.update();
         });
     }
 }

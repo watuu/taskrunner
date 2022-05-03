@@ -9,7 +9,7 @@ $green: #00512d;
 
 $sans : "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
 $serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;
-// $sans: "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+// $sans: "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "メイリオ", "Meiryo", sans-serif;
 // $serif: YakuHanMP, "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;;
 
 
@@ -33,16 +33,17 @@ $easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 $breakpoints: (
 	sm: 640px,
 	md: 960px,
-	lg: 1280px,
+	lg: 1440px,
 );
 $container-padding: (
 	sm: (20/375*100vw),
 	md: (40/375*100vw),
 	lg: (80/1440*100vw),
+	wide: 100px,
 );
 
 // コンテンツの最大幅
-$container-width : 1200px;
+$container-width : 1440px;
 
 // アンカーのマージン
 //$scroll-margin-top: 60px;
@@ -55,7 +56,7 @@ $container-width : 1200px;
 	position: relative;
 	margin-left: auto; margin-right: auto;
 	width: 100%;
-	max-width: ($container-width + 80px);
+	max-width: $container-width;
 	@include sp{
 		padding-left: map-get($container-padding, 'sm');
 		padding-right: map-get($container-padding, 'sm');
@@ -67,6 +68,10 @@ $container-width : 1200px;
 	@include pc{
 		padding-left: map-get($container-padding, 'lg');
 		padding-right: map-get($container-padding, 'lg');
+	}
+	@include wide{
+		padding-left: map-get($container-padding, 'wide');
+		padding-right: map-get($container-padding, 'wide');
 	}
 }
 

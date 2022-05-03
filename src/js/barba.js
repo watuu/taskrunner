@@ -1,7 +1,5 @@
 import barba from '@barba/core';
-import {gsap} from 'gsap';
-import {default as Common} from "./common";
-import Locomotive from "./locomotive";
+import $ from "jQuery";
 
 /*
  * Barba pjax
@@ -11,63 +9,78 @@ import Locomotive from "./locomotive";
 export default class Barba {
     constructor() {
         // vars
-        let common = new Common();
-        let $mask = $('body');
-        let leavingClass = 'is-leaving';
-        let leavingDuration = 1000;
-        let obj_locomotive;
+        const replaceHeadTags = target => {
+            const head = document.head;
+            const targetHead = target.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0];
+            const newPageHead = document.createElement('head');
+            newPageHead.innerHTML = targetHead;
+            const removeHeadTags = [
+                "meta[name='keywords']",
+                "meta[name='description']",
+                "meta[property^='fb']",
+                "meta[property^='og']",
+                "meta[name^='twitter']",
+                "meta[name='robots']",
+                'meta[itemprop]',
+                'link[itemprop]',
+                "link[rel='prev']",
+                "link[rel='next']",
+                "link[rel='canonical']"
+            ].join(',');
+            const headTags = [...head.querySelectorAll(removeHeadTags)];
+            headTags.forEach(item => {
+                head.removeChild(item);
+            });
+            const newHeadTags = [...newPageHead.querySelectorAll(removeHeadTags)];
+            newHeadTags.forEach(item => {
+                head.appendChild(item);
+            });
+        };
 
         // functions
-        barba.hooks.after(() => {
-            if (constants.is_locomotive) {
-                obj_locomotive.update();
-            }
-        });
-
         barba.init({
+            debug: true,
             transitions: [
                 {
-                    name: 'default-transition',
-                    debug: true,
-                    once: () => {
-                        if (constants.is_locomotive) {
-                            obj_locomotive = new Locomotive();
-                        }
-                    },
-                    before() {
-                        $mask.addClass(leavingClass);
-                        setTimeout(function(){
-                            $mask.removeClass(leavingClass);
-                        }, leavingDuration);
+                    sync: true,
+                    beforeOnce: () => {},
+                    once: () => {},
+                    async before() {
+                        document.body.classList.add('is-page-transition');
+                        await delay(300);
                     },
                     leave(data) {
-                        gsap.to(data.current.container, {
-                            opacity: 0,
-                        });
                     },
                     afterLeave() {
                     },
-                    beforeEnter(data) {
-                        if (constants.is_locomotive) {
-                            obj_locomotive.setScroll(0,0);
-                        } else {
-                            window.scrollTo(0, 0);
-                        }
+                    beforeEnter({current, next}) {
+                        replaceHeadTags(next);
+                        window.scrollTo(0, 0);
+                        document.body.classList.remove('is-page-transition');
                     },
                     enter(data) {
-                        gsap.from(data.next.container, {
-                            opacity: 0,
-                        });
-                        common.reload();
-                    }
+                    },
+                    after: () => {},
                 }
             ],
-            schema: {
-                prefix: 'id',
-                wrapper: 'body',
-                container: 'main',
-            },
             prevent: ({ el }) => el.hasAttribute("data-scroll-anchor")
         });
+
+        // Googleアナリティクスに情報を送る
+        barba.hooks.after(() => {
+            if(typeof ga === 'function') {
+                ga('set', 'page', window.location.pathname);
+                ga('send', 'pageview');
+            }
+        });
+
+        function delay (n) {
+            n = n || 2000;
+            return new Promise((done) => {
+                setTimeout(() => {
+                    done();
+                }, n);
+            });
+        }
     }
 }
