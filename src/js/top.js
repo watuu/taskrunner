@@ -5,7 +5,7 @@ import {default as Common} from './common';
 
 export default class Top {
     constructor() {
-        let common = new Common();
+        // let common = new Common();
 
         // let slide = new sliderSlick();
         // slide.top();

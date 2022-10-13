@@ -3,9 +3,9 @@ import {default as Common} from './common';
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 // ver7
-// import Swiper, { Navigation, Paginatio, Autoplay, EffectCreative, FreeMode } from 'swiper';
+// import Swiper, { Navigation, Pagination, Autoplay, EffectCreative, FreeMode } from 'swiper';
 // import 'swiper/css/bundle'
-// Swiper.use([Navigation, Paginatio, Autoplay, EffectCreative, FreeMode]);
+// Swiper.use([Navigation, Pagination, Autoplay, EffectCreative, FreeMode]);
 
 /*
  * Swiper slider
@@ -22,11 +22,12 @@ export default class sliderSwiper {
     example() {
         // FV
         // vars
-        let elem_container = '.p-top-mv__slide .swiper-container';
+        const elem_container = '.p-top-mv__slide .swiper-container';
 
         // functions
-        let mySwiper = new Swiper (elem_container, {
+        const mySwiper = new Swiper (elem_container, {
             loop: true,
+            loopAdditionalSlides: 1,
             slidesPerView: 1,
             spaceBetween: 0,
             pagination: {
@@ -39,8 +40,9 @@ export default class sliderSwiper {
         });
 
         // サイズ固定
-        let mySwiper2 = new Swiper (elem_container, {
+        const mySwiper2 = new Swiper (elem_container, {
             loop: true,
+            loopAdditionalSlides: 1,
             slidesPerView: 1.5,
             centeredSlides : true,
             spaceBetween: 20,
@@ -58,7 +60,7 @@ export default class sliderSwiper {
         })
 
         // サムネイル付き
-        let mySwiperThumb = new Swiper (elem_containerThumb, {
+        const mySwiperThumb = new Swiper (elem_containerThumb, {
             loop: false,
             slidesPerView: 6,
             spaceBetween: 10,
@@ -71,8 +73,9 @@ export default class sliderSwiper {
             },
         });
 
-        let mySwiper3 = new Swiper (elem_container, {
+        const mySwiper3 = new Swiper (elem_container, {
             loop: true,
+            loopAdditionalSlides: 1,
             slidesPerView: 1,
             spaceBetween: 0,
             navigation: {
@@ -86,5 +89,28 @@ export default class sliderSwiper {
         $(window).on('resize orientationchange', function(){
             mySwiper.update();
         });
+
+        // ループスライダー
+        const mySwiper4 = new Swiper (elem_container, {
+            loop: true,
+            loopAdditionalSlides: 1,
+            spaceBetween: 0,
+            speed: 8000,
+            slidesPerView: 'auto',
+            allowTouchMove: false,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                1024: {
+                    slidesPerView: 2.6,
+                    spaceBetween: 30,
+                }
+            }
+        });
+        // .swiper-wrapper {
+        //     transition-timing-function: linear !important;
+        // }
     }
 }

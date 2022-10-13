@@ -30,6 +30,7 @@ export default class Utility {
             if (node.nodeType == 3) { //テキストの場合
                 const text = node.textContent.replace(/\r?\n/g, '');
                 spanWrapText = spanWrapText + text.split('').reduce((acc, v) => {
+                    v = v != ' '? v: '&nbsp'
                     return acc + `<span>${v}</span>`
                 }, "");
             } else {

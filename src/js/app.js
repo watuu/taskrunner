@@ -6,8 +6,13 @@ import {default as Common} from './common';
 import Top from './top';
 import BudouX from './budoux';
 
-const common = new Common();
-common.load();
-// new Barba();
-new Top();
-new BudouX();
+class APP {
+    constructor() {
+        const common = new Common();
+        // new Barba();
+        new Top();
+        new BudouX();
+    }
+}
+
+new APP()

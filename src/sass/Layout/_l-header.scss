@@ -3,45 +3,18 @@
 	ヘッダー
 ----------------------------------------------------*/
 .l-header {
-	width: 100%;
-	height: var(--header-height);
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 9999;
-	transform: translateY(0);
-	//mix-blend-mode: difference;
-	background: rgba(#efefef, 0.5);
-	@include pc {
-		.scrollDown & {
-			//animation: headerScrollDown .3s ease-out forwards;
-		}
-		.scrollUp & {
-			//animation: headerScrollUp .3s ease-out forwards;
-		}
-	}
-}
-@keyframes headerScrollDown {
-	0% {
-		transform: translateY(0);
-	}
-	100% {
-		transform: translateY(-100%);
-	}
-}
-@keyframes headerScrollUp {
-	0% {
-		transform: translateY(-100%);
-	}
-	100% {
-		transform: translateY(0);
-	}
+
 }
 .l-header-content__wrap {
-	@include pc {
-		display: flex;
-	}
+
 }
 
-
+.l-header-logo {
+	z-index: 500;
+	mix-blend-mode: difference;
+}
+.l-header-nav {
+	z-index: 500;
+	mix-blend-mode: difference;
+}
 

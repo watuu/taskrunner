@@ -7,6 +7,15 @@ html {
 	@include sp {
 		font-size: (16/375*100vw);
 	}
+	@include tab {
+		font-size: (16/750*100vw);
+	}
+	@include pc {
+		font-size: (16/1366*100vw);
+	}
+	@include wide {
+		font-size: 16px;
+	}
 }
 body {
 	font-family: $sans;

@@ -11,7 +11,7 @@ head
         title #{title} | #{sitename}
     else
         title #{sitename}
-    meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     //-
         meta(name="description", content="")
         meta(name="keywords", content="")
@@ -32,10 +32,10 @@ head
         link(href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.0.0/dist/css/yakuhanjp.min.css", rel="stylesheet")
         link(href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.0.0/dist/css/yakuhanmp.min.css", rel="stylesheet")
 
-body#body(class=pageClass data-barba="wrapper")
+body#body(class=pageClass)
     = "\n"
     a#top
-    .l-body-wrap(data-barba="container")
+    .l-body-wrap
         header.l-header
             p.l-header-logo
                 a(href="./") logo
@@ -51,23 +51,17 @@ body#body(class=pageClass data-barba="wrapper")
                         a(href="./#sec3" data-scroll-anchor) SECTION3
                     li
                         a(href="./test.html") TEST
-            .l-header-menu
+            button.l-header-menu
                 div
                     span
                     span
                     span
 
-        div(data-scroll-container)
-            main.l-main#main
-                block content
-            footer.l-footer
-                .l-footer-content
-                    p footer
-            .mask
-        .legacy-browser
-            .legacy-browser__body
-                p ご利用のブラウザでは正しく動作しません。<br><a href="https://www.google.co.jp/chrome/" class="u-target">Google Chrome</a>などの最新のブラウザをダウンロードし当サイトをご利用ください。
-
+        main.l-main#main
+            block content
+        footer.l-footer
+            .l-footer-content
+                p footer
 
     script(src= path + "assets/js/app.js")
     = "\n"

@@ -6,6 +6,7 @@ html {
 	height: 100%;
 }
 body {
+	position: relative;
 	height: 100%;
 	&.is-leaving {
 		// animation: bodyLeaving .8s forwards;
@@ -19,16 +20,10 @@ body.no-scroll {
 	overflow: hidden;
 	height: 100vh;
 }
-@keyframes bodyLeaving {
-	0%, 100% {
-		opacity: 1;
-	}
-	30%, 70% {
-		opacity: 0;
-	}
-}
 .l-body-wrap {
 	width: 100%;
 	min-height: 100%;
-	overflow: hidden;
+	@include sp-tab {
+		overflow: hidden;
+	}
 }

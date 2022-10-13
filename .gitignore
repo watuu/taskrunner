@@ -8,10 +8,10 @@ package-lock.json
 Thumbs.db
 
 # WPの場合テーマのみGIT追加
-# /dest/*
-# !/dest/.gitignore
-# !/dest/wp-content
-# /dest/wp-content/*
-# !/dest/wp-content/themes
-# /dest/wp-content/themes/*
-# !/dest/wp-content/themes/xxx
+# /public/*
+# !/public/.gitignore
+# !/public/wp-content
+# /public/wp-content/*
+# !/public/wp-content/themes
+# /public/wp-content/themes/*
+# !/public/wp-content/themes/xxx

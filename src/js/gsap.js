@@ -1,5 +1,5 @@
 import {default as Common} from './common';
-import {gsap,TweenMax,TimelineMax,Power2,Linear} from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 /*
@@ -44,7 +44,7 @@ export default class Gsap {
                 },
                 y: 0,
                 duration: 3,
-                ease: Power2.easeOut,
+                ease: 'power2.out',
             });
         });
 

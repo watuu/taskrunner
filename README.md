@@ -58,5 +58,4 @@ pjax
 
 barba
 GSAP
-locomotive-scroll
 Swiper

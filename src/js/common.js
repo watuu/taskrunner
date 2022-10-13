@@ -1,9 +1,8 @@
-import objectFitImages from 'object-fit-images';
 // import barba from '@barba/core';
 import Top from "./top";
 import $ from "jQuery";
 import Utility from './utility';
-import {gsap, Power2, Power3} from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 /*
@@ -26,6 +25,7 @@ export default class common {
     }
 
     load() {
+        console.log('load')
         this.loader();
         this.scrollEvent();
         this.setDeviceClassToBody();
@@ -33,9 +33,6 @@ export default class common {
         this.smoothScroll();
         this.isVisible();
         this.isVisibleType();
-        if (constants.enabled_legacy_browser) {
-            objectFitImages();
-        }
     }
 
     reload() {
@@ -47,9 +44,9 @@ export default class common {
      */
     loader() {
         // vars
-        var loadedClass = 'loadedLower';
-        var classNameScroll = 'is-scrolled';
-        var marginScrolled = 300;
+        let loadedClass = 'loadedLower';
+        let classNameScroll = 'is-scrolled';
+        let marginScrolled = 300;
 
         // functions
         // ロードクラス付与
@@ -222,7 +219,7 @@ export default class common {
                     opacity: 1,
                     y: '0%',
                     stagger: 0.03,
-                    ease: Power3.easeOut,
+                    ease: 'poser3.out',
                 });
             })
         }

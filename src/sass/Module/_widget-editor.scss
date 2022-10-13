@@ -41,11 +41,14 @@
 	em {
 		font-style: italic;
 	}
-	ul {
+	ul,ol {
 		margin-left: 1.5em;
 	}
 	li {
 		list-style: disc;
+	}
+	ol li {
+		list-style: decimal;
 	}
 	& > * + * {
 		margin-top: 1.5em;
@@ -74,9 +77,23 @@
 			text-decoration: none;
 		}
 	}
-	@include pc {
+}
+/*::::::::::::::::::::::::::::::::::::::::::::::::::*/
+.editor-styles-wrapper.editor-styles-wrapper.editor-styles-wrapper,
+.cm-entry {
+	// gallery
+	.wp-block-gallery.has-nested-images {
 	}
-	@include sp {
-		font-size: 14px;
+	.wp-block-gallery {
+		img {}
+		figcaption {}
+		.wp-block-image {}
+	}
+	// table
+	.wp-block-table {
+	}
+	//blockquote
+	blockquote.wp-block-quote {
 	}
 }
+/*::::::::::::::::::::::::::::::::::::::::::::::::::*/

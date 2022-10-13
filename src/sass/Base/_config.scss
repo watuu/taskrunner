@@ -17,6 +17,8 @@ $easeInSine: cubic-bezier(0.12, 0, 0.39, 0);
 $easeOutSine: cubic-bezier(0.61, 1, 0.88, 1);
 $easeInOutSine: cubic-bezier(0.37, 0, 0.63, 1);
 
+$easeOutQuad: cubic-bezier(0.5, 1, 0.89, 1);
+
 $easeInCubic: cubic-bezier(0.32, 0, 0.67, 0);
 $easeOutCubic: cubic-bezier(0.33, 1, 0.68, 1);
 $easeInOutCubic: cubic-bezier(0.65, 0, 0.35, 1);
@@ -29,21 +31,24 @@ $easeInBack: cubic-bezier(0.36, 0, 0.66, -0.56);
 $easeOutBack: cubic-bezier(0.34, 1.56, 0.64, 1);
 $easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 
+$easeDuration: .3s;
+$easeTheme: $easeOutQuad;
+
 // モバイルファースト
 $breakpoints: (
 	sm: 640px,
-	md: 960px,
-	lg: 1440px,
+	md: 1023px,
+	lg: 1600px,
 );
 $container-padding: (
 	sm: (20/375*100vw),
 	md: (40/375*100vw),
-	lg: (80/1440*100vw),
-	wide: 100px,
+	lg: (200/1600*100vw),
+	wide: 200px,
 );
 
 // コンテンツの最大幅
-$container-width : 1440px;
+$container-width : 1600px;
 
 // アンカーのマージン
 //$scroll-margin-top: 60px;
@@ -53,7 +58,6 @@ $container-width : 1440px;
 // container
 // ===================================================================
 @mixin container{
-	position: relative;
 	margin-left: auto; margin-right: auto;
 	width: 100%;
 	max-width: $container-width;
