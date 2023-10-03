@@ -10,13 +10,13 @@ export default class Utility {
     }
 
     static isSP() {
-        return window.matchMedia('screen and (min-width: 320px) and (max-width: 640px)').matches
+        return window.matchMedia('screen and (min-width: 320px) and (max-width: 749px)').matches
     }
     static isTAB() {
-        return window.matchMedia('screen and (min-width: 641px) and (max-width: 960px)').matches
+        return window.matchMedia('screen and (min-width: 750px) and (max-width: 1023px)').matches
     }
     static isPC() {
-        return window.matchMedia('screen and (min-width: 961px)').matches
+        return window.matchMedia('screen and (min-width: 1024px)').matches
     }
 
     static convertSpiltSpan(selector) {

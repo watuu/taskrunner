@@ -13,25 +13,23 @@ svg(width=22 height=22)
 
 //- picture
 picture
-    source(srcset=img + "" media="(max-width: 960px)")
+    source(srcset=img + "" media="(max-width: 1023px)")
     img(src=img + "" loading="lazy")
 
 picture
-    source(type="image/webp" srcset=img + "" media="(max-width: 960px)")
-    source(type="image/webp" srcset=img + "" media="(min-width: 961px)")
-    source(srcset=img+"" media="(max-width: 960px)")
+    source(srcset=img+"" media="(max-width: 1023px)")
     img(src=img+"")
 
 //- slide
 .swiper-container
-    .swiper-wrapper
-        .swiper-slide.slide-w1280
+    .swiper
+        .swiper-slide
             img(src='http://placehold.jp/666666/ffffff/1280x600.png' alt='' width=1280 height=600)
-        .swiper-slide.slide-w1280
+        .swiper-slide
             img(src='http://placehold.jp/000000/ffffff/1280x600.png' alt='' width=1280 height=600)
-        .swiper-slide.slide-w1280
+        .swiper-slide
             img(src='http://placehold.jp/333333/ffffff/1280x600.png' alt='' width=1280 height=600)
-        .swiper-slide.slide-w1280
+        .swiper-slide
             img(src='http://placehold.jp/000000/ffffff/1280x600.png' alt='' width=1280 height=600)
     .swiper-pagination
     .swiper-button-prev

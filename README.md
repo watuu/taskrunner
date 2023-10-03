@@ -51,11 +51,7 @@ JS
 - スムーズスクロール GSAP
 - barba
 
-x スライダー
-x 慣性スクロール
-x ページ内アンカー
-pjax
-
-barba
-GSAP
-Swiper
+## node-sassがコンパイルできない場合
+エラーコードから必要なファイルを見つけ、ここからbinding.nodeをダウンロード
+https://github.com/sass/node-sass/releases
+/node_modules/node-sass/vendor/darwin-x64-00/binding.nodeにコピー

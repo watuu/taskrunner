@@ -38,17 +38,18 @@ $easeTheme: $easeOutQuad;
 $breakpoints: (
 	sm: 640px,
 	md: 1023px,
-	lg: 1600px,
+	lg: 1920px,
 );
 $container-padding: (
 	sm: (20/375*100vw),
 	md: (40/375*100vw),
 	lg: (200/1600*100vw),
-	wide: 200px,
+	//wide: 200px,
+	wide: (200*1920/1440),
 );
 
 // コンテンツの最大幅
-$container-width : 1600px;
+$container-width : 1920px;
 
 // アンカーのマージン
 //$scroll-margin-top: 60px;
@@ -74,8 +75,8 @@ $container-width : 1600px;
 		padding-right: map-get($container-padding, 'lg');
 	}
 	@include wide{
-		padding-left: map-get($container-padding, 'wide');
-		padding-right: map-get($container-padding, 'wide');
+		padding-left: map-get($container-padding, 'wide')+px;
+		padding-right: map-get($container-padding, 'wide')+px;
 	}
 }
 
@@ -123,5 +124,18 @@ $container-width : 1600px;
 // ===================================================================
 // mixin utility
 // ===================================================================
+
+@mixin hover {
+	transition: $easeDuration $easeTheme;
+	&:active {
+		transform: scale(0.965);
+	}
+	@media (hover: hover) {
+		&:hover,
+		a:hover & {
+			@content;
+		}
+	}
+}
 
 

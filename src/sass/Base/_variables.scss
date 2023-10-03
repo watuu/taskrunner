@@ -2,10 +2,13 @@
 // CSS 変数
 // ===================================================================
 :root {
+	--color: $color;
+	--header-height: #{60/16+rem};
 	@include pc {
 		--header-height: #{120/16+rem};
 	}
-	@include sp-tab {
-		--header-height: #{60/16+rem};
-	}
+}
+.is-section-dark,
+.is-nav-open {
+	--color: #fff;
 }

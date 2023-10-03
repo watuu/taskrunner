@@ -4,7 +4,7 @@
   "description": "",
   "license": "",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "config": {
     "path_dest": "dest",
@@ -12,8 +12,7 @@
     "path_wp": "dest/wp-content/themes/xxx"
   },
   "browserslist": [
-    "last 1 versions",
-    "ie >= 11",
+    "last 2 versions",
     "iOS >= 10",
     "Android >= 4.4"
   ],
@@ -22,7 +21,7 @@
     "css-watch": "chokidar src/sass/ -c 'npm run css'",
     "pug": "pug src/pug/ --hierarchy -o ${npm_package_config_path_dest} -P '\t' -E ${npm_package_config_pug_ext}",
     "pug-watch": "pug src/pug/ --hierarchy -o ${npm_package_config_path_dest} -w -P '\t'  -E ${npm_package_config_pug_ext}",
-    "server": "browser-sync start --proxy http://localhost/ --files 'dest/**/*.css,dest/**/*.js'",
+    "server": "browser-sync start --port 3333 --proxy http://localhost/ --files 'dest/**/*.css,dest/**/*.js'",
     "webpack": "WEBPACK_ENV=${npm_package_config_mode} webpack",
     "webpack-watch": "WEBPACK_ENV=development webpack --watch",
     "webpack-watch:production": "WEBPACK_ENV=production webpack --watch",
@@ -38,7 +37,7 @@
     "chokidar-cli": "^2.1.0",
     "css-declaration-sorter": "^6.3.1",
     "css-loader": "^5.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "node-sass-globbing": "0.0.23",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.16",
@@ -51,12 +50,12 @@
   },
   "dependencies": {
     "@barba/core": "^2.9.7",
-    "budoux": "^0.2.0",
+    "budoux": "^0.5.2",
     "css-vars-ponyfill": "^2.4.8",
-    "gsap": "^3.11.3",
-    "jquery": "^3.6.1",
+    "gsap": "^3.12.2",
+    "jquery": "^3.7.1",
     "jquery-jpostal-ja": "^2.14.26",
     "micromodal": "^0.4.10",
-    "swiper": "^8.4.4"
+    "swiper": "^8.4.7"
   }
 }

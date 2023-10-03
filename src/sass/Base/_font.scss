@@ -11,10 +11,10 @@ html {
 		font-size: (16/750*100vw);
 	}
 	@include pc {
-		font-size: (16/1366*100vw);
+		font-size: (16/1600*100vw);
 	}
 	@include wide {
-		font-size: 16px;
+		font-size: (16*1920/1600+px);
 	}
 }
 body {

@@ -30,7 +30,10 @@ export default class common {
         this.scrollEvent();
         this.setDeviceClassToBody();
         this.globalMenu();
+        this.jsClone();
         this.smoothScroll();
+        this.jsStickySection();
+        this.jsAccordion();
         this.isVisible();
         this.isVisibleType();
     }
@@ -119,31 +122,39 @@ export default class common {
             if ($headerMenu.hasClass(classNameNavOpen)) {
                 $('body').addClass('no-scroll').addClass(classNameNavOpen);
             } else {
-                $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
-                setTimeout(function(){
-                    $('body').removeClass(classNameNavClose);
-                },1000);
+                navClose()
             }
         });
         $header.find('a').on('click', function() {
             $headerMenu.removeClass(classNameNavOpen);
-            $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
-            setTimeout(function(){
-                $('body').removeClass(classNameNavClose);
-            },1000);
+            navClose()
         });
         function setNavHeight() {
             $headerNav.css('height', (window.innerHeight - $header.height()) + 'px');
         }
 
+        function navClose() {
+            $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
+            setTimeout(function(){
+                $('body').removeClass(classNameNavClose);
+            },1000);
+        }
+
         $(window).keydown(function(event) {
             if (event.keyCode == 27) {
                 $headerMenu.removeClass(classNameNavOpen);
-                $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
-                setTimeout(function(){
-                    $('body').removeClass(classNameNavClose);
-                },1000);
+                navClose()
             }
+        });
+    }
+
+    jsClone() {
+        // const dom = '.js-clone, .p-top-about__galleryList img'
+        const dom = '.js-clone'
+
+        $(dom).each(function(){
+
+            $(this).clone(true).insertAfter(this);
         });
     }
 
@@ -184,6 +195,63 @@ export default class common {
             });
             return false;
         });
+    }
+
+    jsStickySection() {
+        const container = '.js-sticky-section'
+        const pin = '.js-sticky-section__aside'
+        const asideLi = '.js-sticky-section__aside li'
+        const section = '.js-sticky-section__content section'
+
+        if ($(container).length && Utility.isPC()) {
+            $(window).on('load', function(){
+                // sticky
+                ScrollTrigger.create({
+                    trigger: container,
+                    start: 'top top+=160px',
+                    end: 'bottom top+=' + $(pin).find('ul').innerHeight(),
+                    pin: pin,
+                    // scrub: true,
+                    pinSpacing: false,
+                    markers: false,
+                });
+                // 現在地表示
+                $(section).each(function(index){
+                    ScrollTrigger.create({
+                        trigger: this,
+                        start: 'top top+=160px',
+                        end: 'bottom top+=160px',
+                        markers: false,
+                        onEnter: () => {
+                            $(asideLi).removeClass('is-current')
+                            $(asideLi).eq(index).addClass('is-current')
+                        },
+                        onEnterBack: () => {
+                            $(asideLi).removeClass('is-current')
+                            $(asideLi).eq(index).addClass('is-current')
+                        },
+                    });
+                })
+            })
+        }
+    }
+
+    jsAccordion() {
+        // vars
+        const btn = '.js-accordion';
+
+        // functions
+        if ($(btn).length) {
+            $(btn).on('click', function(e){
+                e.preventDefault()
+                $(this).toggleClass('is-open')
+                if ($(this).hasClass('is-open')) {
+                    $(this).next().stop(0, 0).slideDown()
+                } else {
+                    $(this).next().stop(0, 0).slideUp()
+                }
+            })
+        }
     }
 
     isVisible() {
