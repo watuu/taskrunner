@@ -1,13 +1,68 @@
+@use '../Base/config' as config;
 // ===================================================================
 // CSS 変数
 // ===================================================================
 :root {
-	--color: $color;
+	--sans : "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "メイリオ", "Meiryo", sans-serif;
+	--serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "HG明朝E", "ＭＳ 明朝", serif;
+	--font : var(--sans);
+
+	--color: #000;
+	--color-inverse: #fff;
+	--color-accent: #f00;
 	--header-height: #{60/16+rem};
-	@include pc {
+	@include config.pc {
 		--header-height: #{120/16+rem};
 	}
+
+	// 余白
+	--gap: #{12/16+rem};
+	--padding-section: #{108/16+rem};
+	--padding-page: #{266/16+rem};
+	@include config.pc {
+		--gap: #{16/16+rem};
+		--padding-section: #{164/16+rem};
+		--padding-page: #{392/16+rem};
+	}
 }
+:root {
+	// sine
+	--easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+	// quad poser1
+	--easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+	// cubic power2
+	--easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+	// quart power3
+	--easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+	--easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+
+	// quint power4
+	--easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+	--easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+	--easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+
+	// expo
+	--easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+	--easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+
+	// back
+	--easeInBack: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+}
+
 .is-section-dark,
 .is-nav-open {
 	--color: #fff;

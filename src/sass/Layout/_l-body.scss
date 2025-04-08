@@ -1,9 +1,10 @@
-
+@use '../Base/config' as config;
 /*----------------------------------------------------
 	body
 ----------------------------------------------------*/
 html {
 	height: 100%;
+	overscroll-behavior: none;
 }
 body {
 	position: relative;
@@ -11,19 +12,15 @@ body {
 	&.is-leaving {
 		// animation: bodyLeaving .8s forwards;
 	}
-	@include pc {
+	@include config.pc {
 	}
-	@include sp-tab {
+	@include config.sp-tab {
 	}
-}
-body.no-scroll {
-	overflow: hidden;
-	height: 100vh;
 }
 .l-body-wrap {
 	width: 100%;
 	min-height: 100%;
-	@include sp-tab {
+	@include config.sp-tab {
 		overflow: hidden;
 	}
 }

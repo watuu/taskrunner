@@ -44,23 +44,20 @@ export default class Barba {
                 {
                     sync: true,
                     beforeOnce: () => {},
-                    once: () => {},
                     async before() {
                         document.body.classList.add('is-page-transition');
                         await delay(300);
                     },
-                    leave(data) {
-                    },
-                    afterLeave() {
+                    beforeLeave(data) {
                     },
                     beforeEnter({current, next}) {
                         replaceHeadTags(next);
                         window.scrollTo(0, 0);
                         document.body.classList.remove('is-page-transition');
                     },
-                    enter(data) {
+                    after: () => {
+                        ScrollTrigger.refresh();
                     },
-                    after: () => {},
                 }
             ],
             prevent: ({ el }) => el.hasAttribute("data-scroll-anchor")

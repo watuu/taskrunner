@@ -3,9 +3,9 @@ import {default as Common} from './common';
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 // ver7
-// import Swiper, { Navigation, Pagination, Autoplay, EffectCreative, FreeMode } from 'swiper';
+// import Swiper, { Navigation, Pagination, Autoplay, EffectCreative, FreeMode, Thumbs } from 'swiper';
 // import 'swiper/css/bundle'
-// Swiper.use([Navigation, Pagination, Autoplay, EffectCreative, FreeMode]);
+// Swiper.use([Navigation, Pagination, Autoplay, EffectCreative, FreeMode, Thumbs]);
 
 /*
  * Swiper slider

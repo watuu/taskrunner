@@ -1,9 +1,16 @@
 // import barba from '@barba/core';
-import Top from "./top";
 import $ from "jQuery";
 import Utility from './utility';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+import 'overlayscrollbars/overlayscrollbars.css';
+import {
+    OverlayScrollbars,
+    // ScrollbarsHidingPlugin,
+    // SizeObserverPlugin,
+    // ClickScrollPlugin
+} from 'overlayscrollbars';
 
 /*
  * common
@@ -13,7 +20,6 @@ export default class common {
 
     constructor() {
         gsap.registerPlugin(ScrollTrigger);
-        this.load();
         // barba.hooks.beforeOnce((data) => {
         //     console.log('once')
         //     this.load();
@@ -26,12 +32,17 @@ export default class common {
 
     load() {
         console.log('load')
+        const osInstance = OverlayScrollbars(document.querySelector('body'), {
+            showNativeOverlaidScrollbars: true,
+        });
+
         this.loader();
         this.scrollEvent();
         this.setDeviceClassToBody();
         this.globalMenu();
-        this.jsClone();
         this.smoothScroll();
+        // this.cMouseStalker();
+        this.jsClone();
         this.jsStickySection();
         this.jsAccordion();
         this.isVisible();
@@ -46,26 +57,26 @@ export default class common {
      * ローディング処理
      */
     loader() {
-        // vars
-        let loadedClass = 'loadedLower';
-        let classNameScroll = 'is-scrolled';
-        let marginScrolled = 300;
+        const loadedClass = 'loadedLower';
+        const classNameScroll = 'is-scrolled';
+        const marginScrolled = 300;
 
-        // functions
-        // ロードクラス付与
-        setTimeout(function(){
-            $('body').addClass(loadedClass);
-        },500);
+        setTimeout(() => {
+            document.body.classList.add(loadedClass);
+        }, 500);
 
-        // スクロール判定
-        $(window).on('scroll resize orientationchange', function(){
-            let margin = marginScrolled;
-            if ($(this).scrollTop() > margin) {
-                $('body').addClass(classNameScroll);
-            } else if ($(this).scrollTop() <= margin) {
-                $('body').removeClass(classNameScroll);
+        const handleScroll = () => {
+            if (window.scrollY > marginScrolled) {
+                document.body.classList.add(classNameScroll);
+            } else {
+                document.body.classList.remove(classNameScroll);
             }
-        });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        window.addEventListener('orientationchange', handleScroll);
+
     }
 
     /*
@@ -73,31 +84,42 @@ export default class common {
      * スクロール動作
      */
     scrollEvent() {
-        // vars
         let defPos = 0;
+        let ticking = false;
 
-        // functions
-        $(window).scroll(function() {
-            debounce(addBodyScrollClass, 10);
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(() => {
+                    addBodyScrollClass();
+                    ticking = false;
+                });
+            }
         });
+
         function addBodyScrollClass() {
-            let currentPos = $(window).scrollTop();
+            let currentPos = window.scrollY;
             if (currentPos > defPos) {
-                if($(window).scrollTop() >= 200) {
-                    $('body').addClass('scrollDown');
-                    $('body').removeClass('scrollUp');
+                if (currentPos >= 200) {
+                    document.body.classList.add('scrollDown');
+                    document.body.classList.remove('scrollUp');
                 }
             } else {
-                $('body').removeClass('scrollDown');
-                $('body').addClass('scrollUp');
+                document.body.classList.remove('scrollDown');
+                document.body.classList.add('scrollUp');
             }
             defPos = currentPos;
         }
-        function debounce(method, delay) {
-            clearTimeout(method._tId);
-            method._tId= setTimeout(function() {
-                method();
-            }, delay);
+
+        // footerクラスの存在チェックとScrollTrigger
+        const footer = document.querySelector('.l-footer');
+        if (footer) {
+            ScrollTrigger.create({
+                trigger: footer,
+                start: 'top bottom',
+                onEnter: () => document.body.classList.add('is-footer-show'),
+                onLeaveBack: () => document.body.classList.remove('is-footer-show'),
+            });
         }
     }
 
@@ -107,54 +129,51 @@ export default class common {
      */
     globalMenu() {
 
-        // vars
-        let classNameNavOpen = 'is-nav-open';
-        let classNameNavClose = 'is-nav-closing';
-        let $header = $('.l-header');
-        let $headerMenu = $('.l-header-menu');
-        let $headerNav = $('.l-header-drawer');
+        const classNameNavOpen = 'is-nav-open';
+        const classNameNavClose = 'is-nav-closing';
+        const header = document.querySelector('.l-header');
+        const headerMenu = document.querySelector('.l-header-menu');
 
-        // functions
-        // ハンバーガーメニュー
-        $headerMenu.on('click', function() {
+        if (!header || !headerMenu) return;
+
+        headerMenu.addEventListener('click', () => {
             setNavHeight();
-            $headerMenu.toggleClass(classNameNavOpen);
-            if ($headerMenu.hasClass(classNameNavOpen)) {
-                $('body').addClass('no-scroll').addClass(classNameNavOpen);
+            headerMenu.classList.toggle(classNameNavOpen);
+            if (headerMenu.classList.contains(classNameNavOpen)) {
+                document.body.classList.add(classNameNavOpen);
             } else {
-                navClose()
+                navClose();
             }
         });
-        $header.find('a').on('click', function() {
-            $headerMenu.removeClass(classNameNavOpen);
-            navClose()
+
+        const headerLinks = header.querySelectorAll('a');
+        headerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                headerMenu.classList.remove(classNameNavOpen);
+                navClose();
+            });
         });
+
         function setNavHeight() {
-            $headerNav.css('height', (window.innerHeight - $header.height()) + 'px');
+            // 任意で実装
+            // headerNav.style.height = `${window.innerHeight - header.offsetHeight}px`;
         }
 
+        // ナビゲーションを閉じる処理
         function navClose() {
-            $('body').removeClass('no-scroll').removeClass(classNameNavOpen).addClass(classNameNavClose);
-            setTimeout(function(){
-                $('body').removeClass(classNameNavClose);
-            },1000);
+            document.body.classList.remove(classNameNavOpen);
+            document.body.classList.add(classNameNavClose);
+            setTimeout(() => {
+                document.body.classList.remove(classNameNavClose);
+            }, 1000);
         }
 
-        $(window).keydown(function(event) {
-            if (event.keyCode == 27) {
-                $headerMenu.removeClass(classNameNavOpen);
-                navClose()
+        // Escキーでメニューを閉じる
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' || event.keyCode === 27) {
+                headerMenu.classList.remove(classNameNavOpen);
+                navClose();
             }
-        });
-    }
-
-    jsClone() {
-        // const dom = '.js-clone, .p-top-about__galleryList img'
-        const dom = '.js-clone'
-
-        $(dom).each(function(){
-
-            $(this).clone(true).insertAfter(this);
         });
     }
 
@@ -164,77 +183,134 @@ export default class common {
      */
     smoothScroll() {
 
-        // vars
-        let elm = $('a[data-scroll-anchor]');
+        const anchors = document.querySelectorAll('a[data-scroll-anchor]:not(.noscroll)');
 
-        // functions
-        elm.not('.noscroll').click(function () {
-            let href = $(this).attr('href');
-            let index = href.indexOf("#");
-            let target = $(href.slice(index));
-            let targetPos = target.offset().top; // 移動する位置
-            let scrollTop = $(window).scrollTop(); // 現在のスクロール位置
-            let scroll = scrollTop - targetPos; // 移動量
-            let duration = 300;
+        anchors.forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
 
-            // 移動量がマイナスの場合
-            if (scroll < 0) {
-                scroll = scroll * (-1);
-            }
-            duration = 0.7 * scroll; // 1pxを0.7ミリ秒（0.0007秒）で移動した場合の時間
+                const href = anchor.getAttribute('href');
+                const index = href.indexOf('#');
+                if (index === -1) return;
 
-            // 時間が100ミリ秒以上は300ミリ秒に設定
-            if (duration > 300) {
-                duration = 300;
-            }
+                const targetSelector = href.slice(index);
+                const target = document.querySelector(targetSelector);
+                if (!target) return;
 
-            $('html, body').animate({
-                scrollTop: targetPos
-            }, duration, 'swing', function(){
-                location.href = href;
+                const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
+                const currentScroll = window.pageYOffset;
+                let scroll = Math.abs(currentScroll - targetPos);
+                let duration = 0.7 * scroll;
+
+                if (duration > 300) {
+                    duration = 300;
+                }
+
+                // スクロール
+                window.scrollTo({
+                    top: targetPos,
+                    behavior: 'smooth'
+                });
+
+                // スクロール後にURL更新（元の動作と完全一致はしないが、ほぼ同様）
+                setTimeout(() => {
+                    history.pushState(null, '', href);
+                }, duration);
             });
-            return false;
+        });
+    }
+
+    cMouseStalker() {
+        const btn = document.querySelector('.c-btn-stalker');
+        const circle = document.querySelector('.c-btn-stalker__circle');
+        const ico = document.querySelector('.c-btn-stalker__ico');
+        const stalkerTriggers = document.querySelectorAll('.js-stalker-show');
+
+        if (btn && ScrollTrigger.isTouch !== 1) {
+            document.addEventListener('mousemove', (e) => {
+                const shift = btn.offsetWidth / 2;
+
+                gsap.to(circle, {
+                    x: e.clientX - shift,
+                    y: e.clientY - shift,
+                    ease: 'power1.out',
+                });
+
+                gsap.to(ico, {
+                    x: e.clientX - shift,
+                    y: e.clientY - shift,
+                    ease: 'power1.out',
+                    delay: 0.005,
+                });
+            });
+
+            stalkerTriggers.forEach(trigger => {
+                trigger.addEventListener('mouseover', () => {
+                    btn.classList.add('on-stalker-show');
+                });
+                trigger.addEventListener('mouseout', () => {
+                    btn.classList.remove('on-stalker-show');
+                });
+            });
+        }
+    }
+
+
+    jsClone() {
+        const elements = document.querySelectorAll('.js-clone');
+
+        elements.forEach(el => {
+            const clone = el.cloneNode(true);
+            el.parentNode.insertBefore(clone, el.nextSibling);
         });
     }
 
     jsStickySection() {
-        const container = '.js-sticky-section'
-        const pin = '.js-sticky-section__aside'
-        const asideLi = '.js-sticky-section__aside li'
-        const section = '.js-sticky-section__content section'
+        const container = document.querySelector('.js-sticky-section');
+        const pin = document.querySelector('.js-sticky-section__aside');
+        const asideLis = document.querySelectorAll('.js-sticky-section__aside li');
+        const sections = document.querySelectorAll('.js-sticky-section__content section');
 
-        if ($(container).length && Utility.isPC()) {
-            $(window).on('load', function(){
+        if (container && pin && Utility.isPC()) {
+            window.addEventListener('load', () => {
                 // sticky
+                const pinUl = pin.querySelector('ul');
+                const pinHeight = pinUl ? pinUl.offsetHeight : 0;
+
                 ScrollTrigger.create({
                     trigger: container,
                     start: 'top top+=160px',
-                    end: 'bottom top+=' + $(pin).find('ul').innerHeight(),
+                    end: `bottom top+=${pinHeight}`,
                     pin: pin,
-                    // scrub: true,
                     pinSpacing: false,
                     markers: false,
                 });
+
                 // 現在地表示
-                $(section).each(function(index){
+                sections.forEach((section, index) => {
                     ScrollTrigger.create({
-                        trigger: this,
+                        trigger: section,
                         start: 'top top+=160px',
                         end: 'bottom top+=160px',
                         markers: false,
                         onEnter: () => {
-                            $(asideLi).removeClass('is-current')
-                            $(asideLi).eq(index).addClass('is-current')
+                            asideLis.forEach(li => li.classList.remove('is-current'));
+                            if (asideLis[index]) {
+                                asideLis[index].classList.add('is-current');
+                            }
                         },
                         onEnterBack: () => {
-                            $(asideLi).removeClass('is-current')
-                            $(asideLi).eq(index).addClass('is-current')
+                            asideLis.forEach(li => li.classList.remove('is-current'));
+                            if (asideLis[index]) {
+                                asideLis[index].classList.add('is-current');
+                            }
                         },
                     });
-                })
-            })
+                });
+            });
         }
     }
+
 
     jsAccordion() {
         // vars
@@ -244,9 +320,20 @@ export default class common {
         if ($(btn).length) {
             $(btn).on('click', function(e){
                 e.preventDefault()
+                let isFlex = $(this).attr('data-accordion-flex')? true: false;
                 $(this).toggleClass('is-open')
                 if ($(this).hasClass('is-open')) {
-                    $(this).next().stop(0, 0).slideDown()
+                    if (isFlex) {
+                        $(this).next().stop(0, 0).slideDown({
+                            start: function () {
+                                $(this).css({
+                                    display: "flex"
+                                })
+                            }
+                        })
+                    } else {
+                        $(this).next().stop(0, 0).slideDown()
+                    }
                 } else {
                     $(this).next().stop(0, 0).slideUp()
                 }
@@ -255,15 +342,15 @@ export default class common {
     }
 
     isVisible() {
-        const dom = '.js-visible'
+        const elements = document.querySelectorAll('.js-visible');
 
-        $(dom).each(function(){
+        elements.forEach(el => {
             ScrollTrigger.create({
-                trigger: this,
+                trigger: el,
                 toggleClass: 'is-visible',
                 start: 'top bottom-=20%',
                 once: true,
-            })
+            });
         });
     }
 
@@ -271,52 +358,49 @@ export default class common {
         const domList = document.querySelectorAll('.js-visible-type');
 
         if (domList.length) {
-            for (let i = 0; i < domList.length; i++) {
-                Utility.convertSpiltSpan(domList[i])
-            }
-            const txtList = '.js-visible-type';
-            $(txtList).each(function(){
-                let txt = $(this).find('span');
-                gsap.set(txt, {opacity: 0, y: '20%'})
-                gsap.to(txt, {
+            domList.forEach(el => {
+                Utility.convertSpiltSpan(el);
+            });
+
+            domList.forEach(el => {
+                const spans = el.querySelectorAll('span');
+
+                gsap.set(spans, { opacity: 0, y: '20%' });
+
+                gsap.to(spans, {
                     scrollTrigger: {
-                        trigger: this,
+                        trigger: el,
                         start: 'top bottom-=20%',
                     },
                     delay: 0.5,
                     opacity: 1,
                     y: '0%',
                     stagger: 0.03,
-                    ease: 'poser3.out',
+                    ease: 'power3.out', // 修正：typoだった 'poser3.out' → 'power3.out'
                 });
-            })
+            });
         }
     }
+
 
     /*globalMenu
      * setDeviceClassToBody
      * デバイスサイズによるクラス付
      */
     setDeviceClassToBody() {
-        $(window).on('load resize orientationchange', () => {
-            const body = document.querySelector('body');
-            if (Utility.isSP()) {
-                body.classList.add('isSP');
-            } else {
-                body.classList.remove('isSP');
-            }
-            if (Utility.isTAB()) {
-                body.classList.add('isTAB');
-            } else {
-                body.classList.remove('isTAB');
-            }
-            if (Utility.isPC()) {
-                body.classList.add('isPC');
-            } else {
-                body.classList.remove('isPC');
-            }
+        const updateBodyClass = () => {
+            const body = document.body;
 
-        });
+            body.classList.toggle('isSP', Utility.isSP());
+            body.classList.toggle('isTAB', Utility.isTAB());
+            body.classList.toggle('isPC', Utility.isPC());
+        };
+
+        // 初回とリサイズ等に対応
+        window.addEventListener('load', updateBodyClass);
+        window.addEventListener('resize', updateBodyClass);
+        window.addEventListener('orientationchange', updateBodyClass);
     }
+
 }
 

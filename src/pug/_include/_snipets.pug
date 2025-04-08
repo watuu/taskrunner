@@ -1,3 +1,20 @@
+-
+    var serviceLists = [
+        {
+            "id": "1",
+            "title": "切妻屋根",
+            "desc": "2枚の板を左右対称に合わせた三角屋根です。<br class='pc'>" +
+                    "単純な構造の切妻屋根は、施工費がリーズナブルな上、雨漏りがしにくく、メンテナンスもしやすい、換気がしやすいなど多くのメリットがございます。<br class='pc'>" +
+                    "デザインも和風、洋風の家ともになじみやすく、ソーラーパネルを設置しやすいことも特長です。<br class='pc'>" +
+                    "日本でよく使われる屋根のため、個性が出しづらいタイプです。"
+        }
+    ]
+each service in serviceLists
+    .c-card-roof
+        figure.c-card-roof__pic
+            img(src=img + "roof-pic"+service.id+".webp" alt="")
+        h3.c-card-roof__title !{service.title}
+        p.c-card-roof__desc !{service.desc}
 //- loop
 - for (var x = 1; x <= 8; x++)
     li(class="aaa" + x "bbb") No.#{x}個

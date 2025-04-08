@@ -1,4 +1,4 @@
-
+@use '../Base/config' as config;
 /*----------------------------------------------------
 	フッター
 ----------------------------------------------------*/
@@ -7,9 +7,9 @@
 	//bottom: 0;
 	background-color: #eee;
 }
-@include pc {
+@include config.pc {
 }
-@include sp-tab {
+@include config.sp-tab {
 }
 @media (hover: hover) {
 }

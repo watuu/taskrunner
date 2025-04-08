@@ -1,11 +1,11 @@
-
+@use '../Base/config' as config;
 /*----------------------------------------------------
-	cm-entry
+	cm-post
 ----------------------------------------------------*/
 body figure {
 	margin-bottom: 0;
 }
-.cm-entry {
+.cm-post {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
@@ -14,7 +14,7 @@ body figure {
 	line-height: 2;
 	word-break: break-all;
 
-	@include pc {
+	@include config.pc {
 		gap: 36px;
 	}
 	h1 {
@@ -67,7 +67,7 @@ body figure {
 		border: 1px solid #ccc;
 	}
 	a {
-		color: $link;
+		color: var(--color-accent);
 		text-decoration: underline;
 		&:hover {
 			text-decoration: none;
@@ -76,7 +76,7 @@ body figure {
 }
 /*::::::::::::::::::::::::::::::::::::::::::::::::::*/
 .editor-styles-wrapper.editor-styles-wrapper.editor-styles-wrapper,
-.cm-entry {
+.cm-post {
 	// embed
 	.wp-block-embed {
 		.wp-element-caption {
@@ -95,7 +95,7 @@ body figure {
 	.wp-block-gallery {
 		display: flex;
 		.wp-block-image {}
-		@include sp-tab {
+		@include config.sp-tab {
 			flex-direction: column;
 		}
 	}

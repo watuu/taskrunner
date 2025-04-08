@@ -1,4 +1,4 @@
-
+@use '../Base/config' as config;
 /*----------------------------------------------------
 	ヘッダー
 ----------------------------------------------------*/
@@ -16,5 +16,11 @@
 .l-header-nav {
 	z-index: 500;
 	mix-blend-mode: difference;
+}
+.l-header-menu {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 2;
 }
 

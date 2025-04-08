@@ -24,6 +24,18 @@ head
     = "\n"
     = "\n"
 
+    if (pageClass == "page-front")
+        <!-- OGP -->
+        meta(property='og:locale' content='ja_JP')
+        meta(property='og:type' content='website')
+        meta(property='og:image' content=path + 'OGP.png')
+        meta(property='og:title' content='')
+        meta(property='og:description' content='')
+        meta(property='og:url' content='')
+        meta(property='og:site_name' content='')
+        meta(name='twitter:card' content='summary')
+        = "\n"
+
     <!-- vendor -->
     = "\n"
     = "\n"
@@ -51,11 +63,10 @@ body#body(class=pageClass)
                         a(href="./#sec3" data-scroll-anchor) SECTION3
                     li
                         a(href="./test.html") TEST
-            button.l-header-menu
-                div
-                    span
-                    span
-                    span
+            button.l-header-menu.c-btn-menu
+                span
+                span
+                span
             .l-header-drawer
                 .l-header-drawer__wrap
                     nav.l-header-drawer__nav
@@ -63,8 +74,6 @@ body#body(class=pageClass)
         main.l-main#main
             block content
         footer.l-footer
-            .l-footer-content
-                p footer
 
     script(src= path + "assets/js/app.js")
     = "\n"

@@ -1,30 +1,30 @@
-
+@use '../Base/config' as config;
 /*----------------------------------------------------
 	フォント
 ----------------------------------------------------*/
 html {
 	font-size: 16px;
-	@include sp {
+	@include config.sp {
 		font-size: (16/375*100vw);
 	}
-	@include tab {
+	@include config.tab {
 		font-size: (16/750*100vw);
 	}
-	@include pc {
+	@include config.pc {
 		font-size: (16/1600*100vw);
 	}
-	@include wide {
+	@include config.wide {
 		font-size: (16*1920/1600+px);
 	}
 }
 body {
-	font-family: $sans;
+	font-family: var(--font);
 	line-height: 1.5;
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	word-wrap:break-word;
-	color: $color;
+	color: var(--color);
 }
 .serif {
-	font-family: $serif;
+	font-family: var(--serif);
 }

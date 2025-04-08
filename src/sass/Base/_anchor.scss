@@ -2,12 +2,17 @@
 /*----------------------------------------------------
 	リンク
 ----------------------------------------------------*/
+button,
 a {
-	color: $color;
+	color: var(--color);
 	text-decoration: none;
-	transition: color $easeDuration $easeInOutSine, background $easeDuration $easeInOutSine, border $easeDuration $easeInOutSine, box-shadow $easeDuration $easeInOutSine ;
+	transition: .3s cubic-bezier(0.25, 1, 0.5, 1);
+	transition: .3s cubic-bezier(0.075, 0.82, 0.165, 1.0);
+	transition: .3s cubic-bezier(0.33, 0.64, 0.67, 0.96);
+
+	cursor: pointer;
 	img {
-		transition: color $easeDuration $easeInOutSine, background $easeDuration $easeInOutSine, border $easeDuration $easeInOutSine, opacity $easeDuration $easeInOutSine, box-shadow $easeDuration $easeInOutSine, transform $easeDuration $easeInOutSine ;
+
 	}
 	@media (hover: hover) {
 		&:hover {

@@ -3,14 +3,15 @@ window.constants = {
 }
 import {default as Common} from './common';
 // import Barba from './barba';
-import Top from './top';
+import Page from './page';
 import BudouX from './budoux';
 
 class APP {
     constructor() {
         const common = new Common();
+        common.load();
         // new Barba();
-        new Top();
+        new Page();
         new BudouX();
     }
 }

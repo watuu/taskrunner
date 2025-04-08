@@ -1,4 +1,4 @@
-
+@use '../Base/config' as config;
 /*----------------------------------------------------
 	フォーム
 ----------------------------------------------------*/
@@ -25,7 +25,7 @@ input,
 select,
 label {
 	vertical-align: middle;
-	color: $color;
+	color: var(--color);
 }
 
 [type="text"] {
@@ -36,30 +36,26 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 button {
-	-webkit-appearance: none;
-	padding: 0;
-	border: none;
+	appearance: none;
 	border-radius: 0;
 	outline: none;
-	background: none;
-	color: $color;
-	font-family: $sans;
+	background: transparent;
+	color: var(--color);
+	font-family: var(--font);
 }
 input[type="submit"],
 button {
 	cursor: pointer;
+	border: none;
 }
 
 textarea {
-	-webkit-appearance: none;
-	-moz-appearance: none;
 	appearance: none;
 	resize: none;
-	padding: 0;
-	border: 0;
-	border-radius: 0;
 	outline: none;
 	background: transparent;
+	color: var(--color);
+	font-family: var(--font);
 }
 
 *:focus {
