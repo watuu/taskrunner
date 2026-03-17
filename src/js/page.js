@@ -11,5 +11,8 @@ Swiper.use([Navigation, Pagination, Autoplay, Scrollbar, EffectFade]);
 export default class Page {
     constructor() {
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+        if (document.querySelector('.cm-xxx')) {
+            //
+        }
     }
 }

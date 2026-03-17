@@ -12,6 +12,10 @@ import {
     // ClickScrollPlugin
 } from 'overlayscrollbars';
 
+import Swiper, { Navigation, Pagination, Autoplay, Scrollbar, EffectFade } from 'swiper';
+import 'swiper/css/bundle'
+Swiper.use([Navigation, Pagination, Autoplay, Scrollbar, EffectFade]);
+
 /*
  * common
  * 共通変数と関数
@@ -40,11 +44,16 @@ export default class common {
         this.scrollEvent();
         this.setDeviceClassToBody();
         this.globalMenu();
+        this.megaMenu();
         this.smoothScroll();
         // this.cMouseStalker();
+        this.jsSplitText();
         this.jsClone();
-        this.jsStickySection();
+        // this.jsStickySection();
         this.jsAccordion();
+        this.jsTab();
+        this.jsSwiper();
+        // this.isSectionDark();
         this.isVisible();
         this.isVisibleType();
     }
@@ -57,13 +66,13 @@ export default class common {
      * ローディング処理
      */
     loader() {
-        const loadedClass = 'loadedLower';
+        const loadedClass = 'windowLoaded';
         const classNameScroll = 'is-scrolled';
         const marginScrolled = 300;
 
-        setTimeout(() => {
+        window.addEventListener('load', ()=>{
             document.body.classList.add(loadedClass);
-        }, 500);
+        })
 
         const handleScroll = () => {
             if (window.scrollY > marginScrolled) {
@@ -165,7 +174,7 @@ export default class common {
             document.body.classList.add(classNameNavClose);
             setTimeout(() => {
                 document.body.classList.remove(classNameNavClose);
-            }, 1000);
+            }, 600);
         }
 
         // Escキーでメニューを閉じる
@@ -260,13 +269,29 @@ export default class common {
         const elements = document.querySelectorAll('.js-clone');
 
         elements.forEach(el => {
-            const clone = el.cloneNode(true);
-            el.parentNode.insertBefore(clone, el.nextSibling);
+            // data-clone-num の数だけ複製
+            const cloneNum = parseInt(el.dataset.cloneNum, 10) || 1;
+
+            for (let i = 0; i < cloneNum; i++) {
+                const clone = el.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                el.parentNode.insertBefore(clone, el.nextSibling);
+            }
         });
     }
 
+    jsSplitText() {
+        const domList = document.querySelectorAll('.js-split-text');
+
+        if (domList.length) {
+            domList.forEach(el => {
+                Utility.convertSpiltSpan(el);
+            });
+        }
+    }
+    
     jsStickySection() {
-        const container = document.querySelector('.js-sticky-section');
+        const container = document.querySelector('.js-sticky-section__content');
         const pin = document.querySelector('.js-sticky-section__aside');
         const asideLis = document.querySelectorAll('.js-sticky-section__aside li');
         const sections = document.querySelectorAll('.js-sticky-section__content section');
@@ -276,11 +301,18 @@ export default class common {
                 // sticky
                 const pinUl = pin.querySelector('ul');
                 const pinHeight = pinUl ? pinUl.offsetHeight : 0;
+                const headerHeightValue = getComputedStyle(document.documentElement)
+                    .getPropertyValue('--header-height')
+                    .trim();
+
+                const headerHeight = headerHeightValue.endsWith('rem')
+                    ? parseFloat(headerHeightValue) * parseFloat(getComputedStyle(document.documentElement).fontSize)
+                    : parseFloat(headerHeightValue);
 
                 ScrollTrigger.create({
                     trigger: container,
-                    start: 'top top+=160px',
-                    end: `bottom top+=${pinHeight}`,
+                    start: `top top+=${headerHeight}`,
+                    end: `bottom-=${pinHeight} top+=${headerHeight}`,
                     pin: pin,
                     pinSpacing: false,
                     markers: false,
@@ -330,15 +362,101 @@ export default class common {
                                     display: "flex"
                                 })
                             }
-                        })
+                        }, 300)
                     } else {
-                        $(this).next().stop(0, 0).slideDown()
+                        $(this).next().stop(0, 0).slideDown(300)
                     }
                 } else {
-                    $(this).next().stop(0, 0).slideUp()
+                    $(this).next().stop(0, 0).slideUp(300)
                 }
             })
         }
+    }
+
+    jsTab() {
+        document.querySelectorAll('.js-tab').forEach(container => {
+            const tabs = container.querySelectorAll('.js-tabBtn');
+            const contents = container.querySelectorAll('.js-tabContent');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('is-active'));
+                    contents.forEach(c => c.classList.remove('is-active'));
+
+                    tab.classList.add('is-active');
+                    contents[index].classList.add('is-active');
+                });
+            });
+
+            if (tabs.length > 0 && contents.length > 0) {
+                tabs[0].classList.add('is-active');
+                contents[0].classList.add('is-active');
+            }
+        });
+    }
+
+    jsSwiper() {
+        const swiperAll = document.querySelectorAll('.js-swiper');
+
+        swiperAll.forEach(wrapper => {
+            const elm = wrapper.querySelector('.swiper');
+            if (!elm) return;
+
+            const paginationEl = wrapper.querySelector('.swiper-pagination');
+            const prevEl = wrapper.querySelector('.swiper-prev');
+            const nextEl = wrapper.querySelector('.swiper-next');
+
+            // functions
+            const mySwiper = new Swiper (elm, {
+                loop: true,
+                loopAdditionalSlides: wrapper.querySelectorAll('.swiper-slide').length,
+                slidesPerView: 1,
+                spaceBetween: 0,
+                speed: 800,
+                // effect: 'fade',
+                // fadeEffect: {
+                //     crossFade: true,
+                // },
+                autoplay: wrapper.dataset.autoplay
+                    ? {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    }
+                    : false,
+                pagination: paginationEl
+                    ? {
+                        el: paginationEl,
+                        clickable: true,
+                    }
+                    : false,
+                navigation: prevEl && nextEl
+                    ? {
+                        prevEl,
+                        nextEl,
+                    }
+                    : false,
+            });
+        })
+    }
+
+    isSectionDark() {
+        const shift = Utility.isPC()?
+            100/1440*window.innerWidth/2:
+            75/390*window.innerWidth/2
+
+        document.querySelectorAll('.is-section-dark').forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: `top-=${shift} top`,
+                end: `bottom-=${shift} top`,
+                markers: false,
+
+                onEnter: () => document.body.classList.add('is-header-dark'),
+                onLeave: () => document.body.classList.remove('is-header-dark'),
+                onEnterBack: () => document.body.classList.add('is-header-dark'),
+                onLeaveBack: () => document.body.classList.remove('is-header-dark'),
+            });
+        });
     }
 
     isVisible() {

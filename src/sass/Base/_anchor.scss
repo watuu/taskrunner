@@ -6,9 +6,7 @@ button,
 a {
 	color: var(--color);
 	text-decoration: none;
-	transition: .3s cubic-bezier(0.25, 1, 0.5, 1);
-	transition: .3s cubic-bezier(0.075, 0.82, 0.165, 1.0);
-	transition: .3s cubic-bezier(0.33, 0.64, 0.67, 0.96);
+	transition: var(--duration) var(--easeTheme);
 
 	cursor: pointer;
 	img {

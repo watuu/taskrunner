@@ -1,4 +1,6 @@
 @use '../Base/config' as config;
+@use '../Component/c-btn' as btn;
+@use '../Component/c-paragraph' as paragraph;
 /*----------------------------------------------------
 	フォント
 ----------------------------------------------------*/
@@ -11,10 +13,11 @@ html {
 		font-size: (16/750*100vw);
 	}
 	@include config.pc {
-		font-size: (16/1600*100vw);
+		// font-size: (16/1600*100vw);
+		font-size: min(16px, #{16/1600*100vw} );
 	}
 	@include config.wide {
-		font-size: (16*1920/1600+px);
+		//font-size: (16*1920/1600+px);
 	}
 }
 body {

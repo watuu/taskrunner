@@ -90,6 +90,13 @@ $container-width : 1920px;
 // ===================================================================
 // mixin utility
 // ===================================================================
+@function px($value) {
+	@if unitless($value) {
+		@return $value * 1px;
+	} @else {
+		@return $value;
+	}
+}
 
 @mixin hover {
 	@media (hover: none) {

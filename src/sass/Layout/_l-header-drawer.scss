@@ -1,8 +1,18 @@
 @use '../Base/config' as config;
+@use '../Component/c-btn' as btn;
+@use '../Component/c-paragraph' as paragraph;
 /*----------------------------------------------------
 	l-header-drawer
 ----------------------------------------------------*/
 .l-header-drawer {
+	width: 100%;
+	position: fixed;
+	inset: var(--header-height) 0 0;
+	overflow: auto;
+}
+.l-header-drawer__wrap {
+	height: 100%;
+	overscroll-behavior: none;
 }
 
 

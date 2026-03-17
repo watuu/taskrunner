@@ -20,35 +20,63 @@ export default class sliderSwiper {
         }
     }
     example() {
-        // FV
-        // vars
-        const elem_container = '.p-top-mv__slide .swiper-container';
 
-        // functions
-        const mySwiper = new Swiper (elem_container, {
-            loop: true,
-            loopAdditionalSlides: 1,
-            slidesPerView: 1,
-            spaceBetween: 0,
-            pagination: {
-                el: '.swiper-pagination',
-            },
-            navigation: {
-                nextEl: '.swiper-next',
-                prevEl: '.swiper-prev',
-            }
-        });
+
+        const swiperAll = document.querySelectorAll('.js-swiper');
+
+        swiperAll.forEach(wrapper => {
+            const elm = wrapper.querySelector('.swiper');
+            if (!elm) return;
+
+            const paginationEl = wrapper.querySelector('.swiper-pagination');
+            const prevEl = wrapper.querySelector('.swiper-prev');
+            const nextEl = wrapper.querySelector('.swiper-next');
+
+            // functions
+            const mySwiper = new Swiper (elm, {
+                loop: true,
+                loopAdditionalSlides: wrapper.querySelectorAll('.swiper-slide').length,
+                slidesPerView: 1,
+                spaceBetween: 0,
+                speed: 800,
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+                autoplay: wrapper.dataset.autoplay === 'false'
+                    ? false
+                    : {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                pagination: paginationEl
+                    ? {
+                        el: paginationEl,
+                        clickable: true,
+                    }
+                    : false,
+                navigation: prevEl && nextEl
+                    ? {
+                        prevEl,
+                        nextEl,
+                    }
+                    : false,
+            });
+        })
+
+        // vars
+        const elm = document.querySelectorAll('.js-swiper .swiper');
 
         // サイズ固定
-        const mySwiper2 = new Swiper (elem_container, {
+        const mySwiper2 = new Swiper (elm, {
             loop: true,
             loopAdditionalSlides: 1,
             slidesPerView: 1.5,
             centeredSlides : true,
             spaceBetween: 20,
             navigation: {
-                nextEl: '.swiper-next',
                 prevEl: '.swiper-prev',
+                nextEl: '.swiper-next',
             },
             breakpoints: {
                 768: {
@@ -60,7 +88,7 @@ export default class sliderSwiper {
         })
 
         // サムネイル付き
-        const mySwiperThumb = new Swiper (elem_containerThumb, {
+        const mySwiperThumb = new Swiper (elmThumb, {
             loop: false,
             slidesPerView: 6,
             spaceBetween: 10,
@@ -73,14 +101,14 @@ export default class sliderSwiper {
             },
         });
 
-        const mySwiper3 = new Swiper (elem_container, {
+        const mySwiper3 = new Swiper (elm, {
             loop: true,
             loopAdditionalSlides: 1,
             slidesPerView: 1,
             spaceBetween: 0,
             navigation: {
-                nextEl: '.swiper-next',
                 prevEl: '.swiper-prev',
+                nextEl: '.swiper-next',
             },
             thumbs: {
                 swiper: mySwiperThumb,
@@ -91,7 +119,7 @@ export default class sliderSwiper {
         });
 
         // ループスライダー
-        const mySwiper4 = new Swiper (elem_container, {
+        const mySwiper4 = new Swiper (elm, {
             loop: true,
             loopAdditionalSlides: 1,
             spaceBetween: 0,

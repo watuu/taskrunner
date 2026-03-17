@@ -1,4 +1,6 @@
 @use '../Base/config' as config;
+@use '../Component/c-btn' as btn;
+@use '../Component/c-paragraph' as paragraph;
 /*----------------------------------------------------
 	汎用クラス
 ----------------------------------------------------*/
@@ -31,8 +33,8 @@
 	}
 }
 
-.u-accent-color {
-	color: var(--accent-color);
+.u-color-accent {
+	color: var(--color-accent);
 }
 
 .u-template {
@@ -74,6 +76,7 @@
 .__loop {
 	animation: loopLeft linear 30s infinite;
 	will-change: transform;
+	backface-visibility: hidden;
 	display: flex;
 	img {
 		width: auto;
@@ -100,6 +103,20 @@
 		transform: translate3d(-100%, 0, 0);
 	}
 	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+@keyframes btnArrow {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	30% {
+		transform: translate3d(70%, 0, 0);
+	}
+	30.1% {
+		transform: translate3d(-70%, 0, 0);
+	}
+	100% {
 		transform: translate3d(0, 0, 0);
 	}
 }
